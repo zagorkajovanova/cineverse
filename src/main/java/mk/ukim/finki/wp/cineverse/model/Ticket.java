@@ -26,8 +26,7 @@ public class Ticket {
 
     }
 
-    public Ticket(Long ticketId, Client client, Movie movie, Integer numberOfSeats) {
-        this.ticketId = ticketId;
+    public Ticket(Client client, Movie movie, Integer numberOfSeats) {
         this.client = client;
         this.movie = movie;
         this.numberOfSeats = numberOfSeats;

@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Data
@@ -20,7 +21,7 @@ public class Movie {
     @OneToOne
     private Image poster;
     private String trailerUrl;
-    private Date showtime;
+    private LocalDate showtime;
     private String duration;
     private Long ticketPrice;
     private String director;
@@ -29,10 +30,9 @@ public class Movie {
     @ManyToMany
     private List<Actor> actors;
 
-    public Movie(Long movieId, String title, String genre, String description,
-                 Image poster, String trailerUrl, Date showtime, String duration,
+    public Movie(String title, String genre, String description,
+                 Image poster, String trailerUrl, LocalDate showtime, String duration,
                  Long ticketPrice, String director, String writer, List<Actor> actors) {
-        this.movieId = movieId;
         this.title = title;
         this.genre = genre;
         this.description = description;

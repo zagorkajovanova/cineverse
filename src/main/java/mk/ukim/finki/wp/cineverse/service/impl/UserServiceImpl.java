@@ -6,6 +6,7 @@ import mk.ukim.finki.wp.cineverse.model.enums.Role;
 import mk.ukim.finki.wp.cineverse.model.exceptions.InvalidUserException;
 import mk.ukim.finki.wp.cineverse.model.exceptions.InvalidUsernameOrPasswordException;
 import mk.ukim.finki.wp.cineverse.model.exceptions.PasswordsDoNotMatchException;
+import mk.ukim.finki.wp.cineverse.model.exceptions.UsernameAlreadyExistsException;
 import mk.ukim.finki.wp.cineverse.repository.ClientRepository;
 import mk.ukim.finki.wp.cineverse.repository.UserRepository;
 import mk.ukim.finki.wp.cineverse.service.UserService;
@@ -34,12 +35,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findByUsername(String username) {
+    public Optional<User> findByUsername(String username) {
         return this.userRepository.findByUsername(username);
     }
 
     @Override
-    public Optional<User> register(Long userId, String username, String password, String repeatPassword,
+    public Optional<User> register(String username, String password, String repeatPassword,
                                    String name, String surname, String email, String avatarURL, String role, String birthDate, String address) {
         if(username==null || username.isEmpty() || password==null || password.isEmpty()) {
             throw new InvalidUsernameOrPasswordException();
@@ -47,6 +48,10 @@ public class UserServiceImpl implements UserService {
 
         if(!password.equals(repeatPassword)){
             throw new PasswordsDoNotMatchException();
+        }
+
+        if(this.userRepository.findByUsername(username).isPresent()){
+            throw new UsernameAlreadyExistsException(username);
         }
 
         if(avatarURL==null || avatarURL.isEmpty()){

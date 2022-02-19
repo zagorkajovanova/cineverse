@@ -3,6 +3,7 @@ package mk.ukim.finki.wp.cineverse.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Data
@@ -28,11 +29,11 @@ public class Review {
     public Review() {
     }
 
-    public Review(Long reviewId, String comment, Date reviewDate, Movie movie, Client author) {
-        this.reviewId = reviewId;
+    public Review(String comment, Movie movie, Client author) {
         this.comment = comment;
-        this.reviewDate = reviewDate;
         this.movie = movie;
         this.author = author;
+        SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
+        reviewDate = new Date(System.currentTimeMillis());
     }
 }
