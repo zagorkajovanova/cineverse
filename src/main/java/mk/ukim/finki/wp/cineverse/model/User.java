@@ -15,6 +15,9 @@ public class User {
     private String avatarURL;
     private Role role;
 
+    public User() {
+    }
+
     public User(Long userId, String username, String password, String name, String surname, String email, String avatarURL, Role role) {
         this.userId = userId;
         this.username = username;

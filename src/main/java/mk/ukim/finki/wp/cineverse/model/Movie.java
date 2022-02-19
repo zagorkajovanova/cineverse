@@ -8,7 +8,7 @@ import java.sql.Date;
 public class Movie {
 
     private Long movieId;
-    private String name;
+    private String title;
     private String genre;
     private String description;
     private Image poster;
@@ -20,11 +20,11 @@ public class Movie {
     private String writer;
     private Actor actors;
 
-    public Movie(Long movieId, String name, String genre, String description, Image poster,
+    public Movie(Long movieId, String title, String genre, String description, Image poster,
                  String trailerUrl, Date showtime, String duration, Long ticketPrice,
                  String director, String writer, Actor actors) {
         this.movieId = movieId;
-        this.name = name;
+        this.title = title;
         this.genre = genre;
         this.description = description;
         this.poster = poster;
