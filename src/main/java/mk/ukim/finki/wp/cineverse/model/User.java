@@ -39,7 +39,7 @@ public class User {
         if(avatarURL!=null && !avatarURL.isEmpty()) {
             this.avatarURL = avatarURL;
         }else{
-            this.avatarURL = "/img/img-1.png";
+            this.avatarURL = "/img/user.png";
         }
     }
 }
