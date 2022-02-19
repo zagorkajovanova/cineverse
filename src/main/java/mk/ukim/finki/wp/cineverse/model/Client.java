@@ -3,16 +3,25 @@ package mk.ukim.finki.wp.cineverse.model;
 import lombok.Data;
 import mk.ukim.finki.wp.cineverse.model.enums.Role;
 
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 @Data
+@Entity
 public class Client extends User{
 
     private LocalDate birthDate;
     private String address;
+    @ManyToMany
     private List<Movie> favoriteMovies;
+
+    @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
+    private List<Ticket> tickets;
 
     public Client(){
         super();

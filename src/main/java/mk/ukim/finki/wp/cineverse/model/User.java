@@ -3,16 +3,25 @@ package mk.ukim.finki.wp.cineverse.model;
 import lombok.Data;
 import mk.ukim.finki.wp.cineverse.model.enums.Role;
 
+import javax.persistence.*;
+
 @Data
+@Entity
+@Table(name = "users")
 public class User {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
+
     private String username;
     private String password;
     private String name;
     private String surname;
     private String email;
     private String avatarURL;
+
+    @Enumerated(EnumType.STRING)
     private Role role;
 
     public User() {
