@@ -28,8 +28,8 @@ public class User {
     public User() {
     }
 
-    public User(Long userId, String username, String password, String name, String surname, String email, String avatarURL, Role role) {
-        this.userId = userId;
+    public User(String username, String password, String name, String surname,
+                String email, String avatarURL, Role role) {
         this.username = username;
         this.password = password;
         this.name = name;

@@ -25,11 +25,12 @@ public class Client extends User{
         this.favoriteMovies = new ArrayList<>();
     }
 
-    public Client(Long userId, String username, String password, String name, String surname, String email, String avatarURL, Role role, LocalDate birthDate, String address, List<Movie> favoriteMovies) {
-        super(userId, username, password, name, surname, email, avatarURL, role);
+    public Client(String username, String password, String name, String surname,
+                  String email, String avatarURL, LocalDate birthDate, String address) {
+        super(username, password, name, surname, email, avatarURL, Role.ROLE_CLIENT);
         this.birthDate = birthDate;
         this.address = address;
-        this.favoriteMovies = favoriteMovies;
+        this.favoriteMovies = new ArrayList<>();
     }
 
 }
