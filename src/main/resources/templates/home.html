@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <title>Home</title>
     <link rel="stylesheet" href="css/header-footer.css">
+    <link rel="stylesheet" href="css/top-movies.css">
+
 
 </head>
 <body>
@@ -88,6 +90,29 @@
             </a>
         </div>
     </div>
+    <br/><br/>
+
+<!--    top movies carousel-->
+    <div class="container">
+        <h2 class='text-center'><span>T O P • M O V I E S</span></h2>
+    </div>
+
+    <div id="top_movies" class="d-flex justify-content-between">
+        <div class="card movie_card" th:each="movie : ${topMovies}">
+            <a href="#">
+                <img th:src="${movie.getPoster().getImageUrl()}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${movie.getTitle()}"></h5>
+                    <span class="movie_info float-right" th:text="${movie.getDescription()}"><i class="fas fa-star"></i></span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
 
 <!--    footer-->
 <footer>

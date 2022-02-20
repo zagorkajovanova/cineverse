@@ -42,7 +42,7 @@ public class MovieServiceImpl implements MovieService {
 
     @Override
     public Movie save(String title, String genre, String description, Image poster, String trailerUrl,
-                      String showtime, String duration, Long ticketPrice, String director, String writer, List<Actor> actors) {
+                      String showtime, String duration, Float ticketPrice, String director, String writer, List<Actor> actors) {
         LocalDate date = LocalDate.parse(showtime);
         Movie movie = new Movie(title,genre,description,poster,trailerUrl,date,duration,ticketPrice,director,writer,actors);
         return this.movieRepository.save(movie);
@@ -50,7 +50,7 @@ public class MovieServiceImpl implements MovieService {
 
     @Override
     public Movie update(Long movieId, String title, String genre, String description, Image poster, String trailerUrl,
-                        String showtime, String duration, Long ticketPrice, String director, String writer, List<Actor> actors) {
+                        String showtime, String duration, Float ticketPrice, String director, String writer, List<Actor> actors) {
         Movie movie = this.movieRepository.findById(movieId).orElseThrow(() -> new MovieNotFoundException(movieId));
 
         if (trailerUrl == null || trailerUrl.isEmpty()) {
@@ -79,6 +79,6 @@ public class MovieServiceImpl implements MovieService {
     @Override
     public List<Movie> getLatestMovies() {
         return this.movieRepository.findAll().stream()
-                .sorted(Comparator.comparing(Movie::getShowtime)).limit(6).collect(Collectors.toList());
+                .sorted(Comparator.comparing(Movie::getShowtime)).limit(5).collect(Collectors.toList());
     }
 }

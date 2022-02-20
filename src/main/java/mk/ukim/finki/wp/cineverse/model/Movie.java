@@ -23,16 +23,19 @@ public class Movie {
     private String trailerUrl;
     private LocalDate showtime;
     private String duration;
-    private Long ticketPrice;
+    private Float ticketPrice;
     private String director;
     private String writer;
 
     @ManyToMany
     private List<Actor> actors;
 
+    public Movie() {
+    }
+
     public Movie(String title, String genre, String description,
                  Image poster, String trailerUrl, LocalDate showtime, String duration,
-                 Long ticketPrice, String director, String writer, List<Actor> actors) {
+                 Float ticketPrice, String director, String writer, List<Actor> actors) {
         this.title = title;
         this.genre = genre;
         this.description = description;
