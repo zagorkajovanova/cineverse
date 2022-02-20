@@ -18,4 +18,5 @@ public interface MovieService {
     Movie update(Long movieId, String title, String genre, String description,
                  Image poster, String trailerUrl, String showtime, String duration,
                  Long ticketPrice, String director, String writer, List<Actor> actors);
+    List<Movie> getLatestMovies();
 }

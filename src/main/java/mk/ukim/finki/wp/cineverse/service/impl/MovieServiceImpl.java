@@ -9,8 +9,10 @@ import mk.ukim.finki.wp.cineverse.service.MovieService;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class MovieServiceImpl implements MovieService {
@@ -72,5 +74,11 @@ public class MovieServiceImpl implements MovieService {
         movie.setActors(actors);
 
         return this.movieRepository.save(movie);
+    }
+
+    @Override
+    public List<Movie> getLatestMovies() {
+        return this.movieRepository.findAll().stream()
+                .sorted(Comparator.comparing(Movie::getShowtime)).limit(6).collect(Collectors.toList());
     }
 }
