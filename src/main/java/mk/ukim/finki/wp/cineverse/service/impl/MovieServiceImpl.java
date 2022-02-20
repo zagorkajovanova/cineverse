@@ -12,6 +12,7 @@ import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 @Service
@@ -80,5 +81,13 @@ public class MovieServiceImpl implements MovieService {
     public List<Movie> getLatestMovies() {
         return this.movieRepository.findAll().stream()
                 .sorted(Comparator.comparing(Movie::getShowtime)).limit(5).collect(Collectors.toList());
+    }
+
+    @Override
+    public Movie selectRandomMovie() {
+        Random r = new Random();
+        List<Movie> list = this.movieRepository.findAll();
+        Movie movie = list.get(r.nextInt(list.size()));
+        return movie;
     }
 }

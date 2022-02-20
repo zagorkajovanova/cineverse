@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <title>Home</title>
+    <title>Cineverse - Home</title>
     <link rel="stylesheet" href="css/header-footer.css">
     <link rel="stylesheet" href="css/top-movies.css">
-
+    <link rel="stylesheet" href="css/upcomingMovies.css">
 
 </head>
 <body>
@@ -60,7 +60,9 @@
                         <video class="video-fluid d-block w-100" autoplay loop muted>
                             <source src="video/shazam_cut.mp4" type="video/mp4"/>
                         </video>
-                        <p class="display-4 p-over-video pl-4 movieTitle">Shazam</p>
+                        <div class="overlay">
+                            <p class="display-4 p-over-video pl-4 movieTitle" style="font-family: Perpetua,serif;">Shazam</p>
+                        </div>
                     </div>
                 </div>
                 <div class="carousel-item">
@@ -68,7 +70,9 @@
                         <video class="video-fluid d-block w-100" autoplay loop muted>
                             <source src="video/godzila_cut.mp4" type="video/mp4"/>
                         </video>
-                        <p class="display-4 p-over-video pl-4 movieTitle">Godzilla vs Kong</p>
+                        <div class="overlay">
+                            <p class="display-4 p-over-video pl-4 movieTitle" style="font-family: Perpetua,serif;">Godzilla vs Kong</p>
+                        </div>
                     </div>
                 </div>
                 <div class="carousel-item">
@@ -76,7 +80,9 @@
                         <video class="video-fluid d-block w-100" autoplay loop muted>
                             <source src="video/baby_boss_cut.mp4" type="video/mp4"/>
                         </video>
-                        <p class="display-4 p-over-video pl-4 movieTitle">The Baby Boss</p>
+                        <div class="overlay">
+                            <p class="display-4 p-over-video pl-4 movieTitle" style="font-family: Perpetua,serif;">The Baby Boss</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -94,17 +100,17 @@
 
 <!--    top movies carousel-->
     <div class="container">
-        <h2 class='text-center'><span>T O P • M O V I E S</span></h2>
+        <h2 class='text-center'>
+            <span class="topMoviesHeader" style="font-family: Perpetua,serif;">T O P</span>
+            <span><img src="/img/arrow.png" style="width: 30px"></span>
+            <span class="topMoviesHeader" style="font-family: Perpetua,serif;">M O V I E S</span>
+        </h2>
     </div>
 
     <div id="top_movies" class="d-flex justify-content-between">
         <div class="card movie_card" th:each="movie : ${topMovies}">
-            <a href="#">
+            <a th:href="'/movie/' + ${movie.getMovieId()}">
                 <img th:src="${movie.getPoster().getImageUrl()}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title" th:text="${movie.getTitle()}"></h5>
-                    <span class="movie_info float-right" th:text="${movie.getDescription()}"><i class="fas fa-star"></i></span>
-                </div>
             </a>
         </div>
     </div>
@@ -112,7 +118,6 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
 
 <!--    footer-->
 <footer>
@@ -123,25 +128,34 @@
             </div><hr>
             <p style="text-align: justify">Enjoy your online ticket booking for your favorite movies. New movies every week.<br/>
             You have a movie suggestion? Let us know at out offical email!</p>
+            <div id="social" class="text-center">
+                <a href="#"><img src="/img/facebook-logo.png" style="width: 30px; padding-right: 5px"></a>
+                <a href="#"><img src="/img/instagram.png" style="width: 30px; padding-right: 5px"></a>
+                <a href="#"><img src="/img/twitter.png" style="width: 30px; padding-right: 5px"></a>
+                <a href="#"><img src="/img/linkedin.png" style="width: 30px; padding-right: 5px"></a>
+                <a href="#"><img src="/img/whatsapp.png" style="width: 30px; padding-right: 5px"></a>
+            </div>
         </div>
-        <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 pt-4 order-2">
+        <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 pt-4 order-2 mr-3">
             <ul class="list-unstyled">
-                <li class="mt-md-0 mt-4">Your needs</li>
-                <li>Intergrated Platform Security </li>
-                <li>Core Features</li>
-                <li>Product Features</li>
-                <li>Pricing</li>
-                <li>Product Features</li>
+                <li class="mt-md-0 mt-4">Helpful Links</li>
+                <li><a href="/home">Home</a></li>
+                <li><a>Movies</a></li>
+                <li>About Us</li>
+                <li>Login</li>
             </ul>
         </div>
-        <div class="col-xl-auto col-lg-6 col-md-6 pt-4 col-sm-6 my-sm-0 order-md-4 order-sm-3 d-flex">
+        <div class="col-xl-auto col-lg-6 col-md-6 pt-4 col-sm-6 my-sm-0 order-md-4 order-sm-3 d-flex" style="margin-left: -300px">
             <ul class="list-unstyled">
-                <li class="mt-md-0 mt-4">Offer</li>
-                <li>Intergrated Security </li>
-                <li>Core Features</li>
-                <li>Product Features </li>
-                <li>Pricing</li>
-                <li>Intergrated Security </li>
+                <li class="mt-md-0 mt-4">Contact Us</li>
+                <img src="/img/email.png" style="width: 20px">
+                <li style="display: inline-block">cineverse@contact.com</li><br/>
+                <img src="/img/email.png" style="width: 20px">
+                <li style="display: inline-block">jovanovazagorka@outlook.com</li><br/>
+                <img src="/img/telephone.png" style="width: 20px">
+                <li style="display: inline-block">+ 01 234 567 88</li><br/>
+                <img src="/img/telephone.png" style="width: 20px">
+                <li style="display: inline-block">+ 01 234 567 89</li>
             </ul>
         </div>
     </div>
@@ -153,9 +167,5 @@
     </div>
 </footer>
 
-
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>
