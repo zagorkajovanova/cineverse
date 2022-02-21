@@ -21,6 +21,7 @@ public class HomeController {
 
     @GetMapping(value = {"/", "/home"})
     public String getHomePage(Model model){
+        //TODO: master-template
         List<Movie> topMovies = this.movieService.getLatestMovies();
         model.addAttribute("topMovies", topMovies);
         return "home";

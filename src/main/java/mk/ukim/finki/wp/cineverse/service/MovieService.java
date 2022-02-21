@@ -19,4 +19,5 @@ public interface MovieService {
                  Float ticketPrice, String director, String writer, List<Actor> actors);
     List<Movie> getLatestMovies();
     Movie selectRandomMovie();
+    List<Movie> findMoviesByGenre(String genre);
 }

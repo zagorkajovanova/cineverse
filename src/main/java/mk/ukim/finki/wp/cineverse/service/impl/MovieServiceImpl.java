@@ -90,4 +90,10 @@ public class MovieServiceImpl implements MovieService {
         Movie movie = list.get(r.nextInt(list.size()));
         return movie;
     }
+
+    @Override
+    public List<Movie> findMoviesByGenre(String genre) {
+        return this.movieRepository.findAllByGenre(genre);
+    }
+
 }
