@@ -1,0 +1,32 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap");
+
+.container{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+h2 {
+    text-align: center;
+    color: black;
+    text-transform: uppercase;
+    padding: 1px;
+    font-family: "Raleway", cursive;
+    position: relative;
+    width: 100%;
+    white-space: nowrap;
+    letter-spacing: 25px;
+    font-weight: bold;
+}
+
+.target{
+    animation: flowing 15s linear infinite;
+    transform: translateX(100%);
+    font-family: "Raleway", cursive;
+    font-weight: bold;
+}
+
+@keyframes flowing {
+    100% {
+        transform: translateX(-70%);
+    }
+}
+

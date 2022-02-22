@@ -24,7 +24,11 @@ li {
 footer {
     overflow-x: hidden !important;
     background-color: #EFEFF9 !important;
-    color: #546E7A !important
+    color: #546E7A !important;
+    font-family: 'Montserrat', helvetica, arial, sans-serif;
+}
+header{
+    font-family: 'Montserrat', helvetica, arial, sans-serif;
 }
 
 small {
@@ -114,3 +118,4 @@ figcaption {
 #footerLogo{
     width: 350px;
 }
+

@@ -9,15 +9,15 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-    <link rel="stylesheet" href="css/movie-banner.css">
-    <link rel="stylesheet" href="css/movie-carousel.css">
     <link rel="stylesheet" href="css/header-footer.css">
+    <link rel="stylesheet" href="css/movies-page-title.css">
+    <link rel="stylesheet" href="css/movies-carousel.css">
 
 
 </head>
 <body>
     <!--    header-->
-    <header style="font-family: 'Montserrat', helvetica, arial, sans-serif;">
+    <header class="navigation">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -50,60 +50,105 @@
     <!--    end of header-->
 
     <div class="container">
-            <div class="movie_card" th:each="movie : ${movies}"
-                 style="width: 200px; height: 290px; padding: 10px; display: inline-block; margin-right: 7px">
-                <a th:href="'/movie/' + ${movie.getMovieId()}">
-                    <div>
-                            <img style="width: 100%;" class="locandina" th:src="${movie.getPoster().getImageUrl()}"/>
-                    </div>
-                    <div class="blur_back"></div>
-                </a>
-            </div>
+        <h2><p class="target">NEW MOVIES EVERY WEEK</p></h2>
     </div>
 
-    <!--    banner-->
-<!--    <div class="movie_card" id="bright">-->
-<!--        <div class="info_section">-->
-<!--            <div class="movie_header">-->
-<!--                <a th:href="'/movie/' + ${randomMovie.getMovieId()}">-->
-<!--                    <img class="locandina" th:src="${randomMovie.getPoster().getImageUrl()}"/>-->
-<!--                    <h1 th:text="${randomMovie.getTitle()}"></h1>-->
-<!--                    <h4><th:block th:text="${randomMovie.getWriter()}"></th:block></h4>-->
-<!--                    <span class="minutes"><th:block th:text="${randomMovieHours}"></th:block> <th:block th:text="${randomMovieMins}"></th:block></span>-->
-<!--                    <p class="type"><th:block th:text="${randomMovie.getGenre()}"></th:block></p>-->
-<!--                </a>-->
-<!--            </div>-->
-<!--            <div class="movie_desc">-->
-<!--                <p class="text">-->
-<!--                    Set in a world where fantasy creatures live side by side with humans. A human cop is forced to work with an Orc to find a weapon everyone is prepared to kill for.-->
-<!--                </p><br/>-->
-<!--                <p class="type">Director: <th:block th:text="${randomMovie.getDirector()}"></th:block></p>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <div class="blur_back"></div>-->
-<!--    </div>-->
 
-    <!--  movies carousel-->
-<!--    <div class="container">-->
-<!--        <div class="row">-->
-<!--            <div class="MultiCarousel" data-items="1,3,5,6" data-slide="1" data-interval="1000">-->
-<!--                <div class="MultiCarousel-inner">-->
-<!--                    <div class="item" th:each="movie : ${movies}">-->
-<!--                        <a th:href="'/movie/' + ${movie.getMovieId()}">-->
-<!--                            <div class="pad15">-->
-<!--                                <img style="width: 150px" th:src="${movie.getPoster().getImageUrl()}">-->
-<!--                            </div>-->
-<!--                        </a>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <button class="btn btn-primary leftLst"><</button>-->
-<!--                <button class="btn btn-primary rightLst">></button>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
+<!--   fantasy movies carousel-->
+    <div class="container movieCarousel"
+        style="padding: 10px 60px 10px 60px; border-radius: 10px; box-shadow: 0px 0px 120px -25px rgba(0, 0, 0, 0.5);">
+        <header>
+            <h4>Fantasy/Comedy</h4>
+        </header>
+        <div class="row">
+            <div class="MultiCarousel" data-items="1,3,4,5" data-slide="1" data-interval="1000">
+                <div class="MultiCarousel-inner">
+                    <div class="item" th:each="movie : ${fantasyMovies}">
+                        <a th:href="'/movie/' + ${movie.getMovieId()}">
+                            <div class="pad15">
+                                <img style="width: 150px" th:src="${movie.getPoster().getImageUrl()}">
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <button class="btn btn-primary leftLst"><</button>
+                <button class="btn btn-primary rightLst">></button>
+            </div>
+        </div>
+    </div>
+
+
+<!--   action movies carousel-->
+    <div class="container movieCarousel"
+         style="padding: 10px 60px 10px 60px; border-radius: 10px; box-shadow: 0px 0px 120px -25px rgba(0, 0, 0, 0.5);">
+        <header>
+            <h4>Action</h4>
+        </header>
+        <div class="row">
+            <div class="MultiCarousel" data-items="1,3,4,5" data-slide="1" data-interval="1000">
+                <div class="MultiCarousel-inner">
+                    <div class="item" th:each="movie : ${actionMovies}">
+                        <a th:href="'/movie/' + ${movie.getMovieId()}">
+                            <div class="pad15">
+                                <img style="width: 150px" th:src="${movie.getPoster().getImageUrl()}">
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <button class="btn btn-primary leftLst"><</button>
+                <button class="btn btn-primary rightLst">></button>
+            </div>
+        </div>
+    </div>
+
+    <!--   romance movies carousel-->
+    <div class="container movieCarousel"
+         style="padding: 10px 60px 10px 60px; border-radius: 10px; box-shadow: 0px 0px 120px -25px rgba(0, 0, 0, 0.5);">
+        <header>
+           <h4>Romance</h4>
+        </header>
+        <div class="row">
+            <div class="MultiCarousel" data-items="1,3,4,5" data-slide="1" data-interval="1000">
+                <div class="MultiCarousel-inner">
+                    <div class="item" th:each="movie : ${romanceMovies}">
+                        <a th:href="'/movie/' + ${movie.getMovieId()}">
+                            <div class="pad15">
+                                <img style="width: 150px" th:src="${movie.getPoster().getImageUrl()}">
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <button class="btn btn-primary leftLst"><</button>
+                <button class="btn btn-primary rightLst">></button>
+            </div>
+        </div>
+    </div>
+
+    <!--   horror movies carousel-->
+    <div class="container movieCarousel"
+         style="padding: 10px 60px 10px 60px; border-radius: 10px; box-shadow: 0px 0px 120px -25px rgba(0, 0, 0, 0.5);">
+        <header>
+             <h4>Horror</h4>
+        </header>
+        <div class="row">
+            <div class="MultiCarousel" data-items="1,3,4,5" data-slide="1" data-interval="1000">
+                <div class="MultiCarousel-inner">
+                    <div class="item" th:each="movie : ${horrorMovies}">
+                        <a th:href="'/movie/' + ${movie.getMovieId()}">
+                            <div class="pad15">
+                                <img style="width: 150px" th:src="${movie.getPoster().getImageUrl()}">
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <button class="btn btn-primary leftLst"><</button>
+                <button class="btn btn-primary rightLst">></button>
+            </div>
+        </div>
+    </div>
 
     <!--    footer-->
-    <footer style="font-family: 'Montserrat', helvetica, arial, sans-serif;">
+    <footer>
         <div class="row mb-0 mt-5 mx-4 row-2 justify-content-xl-around justify-content-sm-between">
             <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 pt-2 order-1">
                 <div style="height: 150px; margin-top: -75px">
@@ -151,6 +196,7 @@
     </footer>
 <!--    end of footer-->
 
+<!--    script used for movies carousel-->
     <script>
         $(document).ready(function () {
             var itemsMainDiv = ('.MultiCarousel');
@@ -218,7 +264,6 @@
 
                 });
             }
-
 
             //this function used to move the items
             function ResCarousel(e, el, s) {

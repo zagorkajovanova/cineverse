@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+
 .MultiCarousel { float: left; overflow: hidden; padding: 15px; width: 100%; position:relative; }
 .MultiCarousel .MultiCarousel-inner { transition: 1s ease all; float: left; }
 .MultiCarousel .MultiCarousel-inner .item { float: left;}
@@ -8,3 +10,18 @@
 
 .MultiCarousel .leftLst.over, .MultiCarousel .rightLst.over { pointer-events: none; background:#ccc; }
 
+.movieCarousel{
+    position: relative;
+    padding-left: 40px;
+}
+header h4{
+    line-height: 40px;
+    white-space: nowrap;
+    position: absolute;
+    right: 100%;
+    transform-origin: top right 0;
+    transform: rotate( 270deg );
+    font-family: 'Anton', sans-serif;
+    letter-spacing: 5px;
+    color: gray;
+}

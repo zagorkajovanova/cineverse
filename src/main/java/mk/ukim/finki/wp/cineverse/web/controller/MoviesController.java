@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Controller
 @RequestMapping("/movies")
@@ -25,17 +27,19 @@ public class MoviesController {
         List<Movie> movies = this.movieService.listAllMovies();
         List<Movie> fantasyMovies = this.movieService.findMoviesByGenre("Fantasy");
         List<Movie> actionMovies = this.movieService.findMoviesByGenre("Action");
-        List<Movie> firstHalf = movies.subList(0,10);
-        List<Movie> secondHalf = movies.subList(10,movies.size());
+        List<Movie> horrorMovies = this.movieService.findMoviesByGenre("Horror");
+        List<Movie> comedyMovies = this.movieService.findMoviesByGenre("Comedy");
+        List<Movie> romanceMovies = this.movieService.findMoviesByGenre("Romance");
 
-        String[] duration = randomMovie.getDuration().split(" ");
+        List<Movie> fantasyComedy = Stream.concat(fantasyMovies.stream(), comedyMovies.stream())
+                .collect(Collectors.toList());
 
-        model.addAttribute("randomMovie", randomMovie);
-        model.addAttribute("randomMovieHours", duration[0]);
-        model.addAttribute("randomMovieMins", duration[1]);
         model.addAttribute("movies", movies);
-        model.addAttribute("firstHalf", firstHalf);
-        model.addAttribute("secondHalf", secondHalf);
+        model.addAttribute("fantasyMovies", fantasyComedy);
+        model.addAttribute("actionMovies", actionMovies);
+        model.addAttribute("horrorMovies", horrorMovies);
+        model.addAttribute("romanceMovies", romanceMovies);
+
         return "movies";
     }
 }
