@@ -42,4 +42,13 @@ public class MoviesController {
 
         return "movies";
     }
+
+    @GetMapping("/add-movie")
+    public String getAddMoviePage(){
+        //TODO: create add-movie page
+        return "add-movie";
+    }
+
+    //TODO: implement PostMapping for add movie
+
 }

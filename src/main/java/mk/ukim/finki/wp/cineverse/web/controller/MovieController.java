@@ -26,6 +26,7 @@ public class MovieController {
         Movie movie = this.movieService.findById(movieId).orElseThrow(() -> new MovieNotFoundException(movieId));
 
         model.addAttribute("movie", movie);
+        model.addAttribute("style1", "header-footer.css");
         return "movie";
     }
 }
