@@ -1,14 +1,15 @@
 package mk.ukim.finki.wp.cineverse.service.impl;
 
+import mk.ukim.finki.wp.cineverse.model.Client;
 import mk.ukim.finki.wp.cineverse.model.Movie;
 import mk.ukim.finki.wp.cineverse.model.Review;
-import mk.ukim.finki.wp.cineverse.model.User;
 import mk.ukim.finki.wp.cineverse.model.exceptions.MovieNotFoundException;
 import mk.ukim.finki.wp.cineverse.repository.MovieRepository;
 import mk.ukim.finki.wp.cineverse.repository.ReviewRepository;
 import mk.ukim.finki.wp.cineverse.service.ReviewService;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -38,7 +39,7 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
-    public Review create(String comment, Movie movie, User author) {
+    public Review create(String comment, Movie movie, Client author) {
         Review review = new Review(comment,movie,author);
         return this.reviewRepository.save(review);
     }

@@ -24,12 +24,12 @@ public class Review {
 
     //Author of the review
     @ManyToOne
-    private User author;
+    private Client author;
 
     public Review() {
     }
 
-    public Review(String comment, Movie movie, User author) {
+    public Review(String comment, Movie movie, Client author) {
         this.comment = comment;
         this.movie = movie;
         this.author = author;

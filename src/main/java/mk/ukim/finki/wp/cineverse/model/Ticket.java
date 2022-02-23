@@ -13,7 +13,7 @@ public class Ticket {
     private Long ticketId;
 
     @ManyToOne
-    private User user;
+    private Client client;
     @ManyToOne
     private Movie movie;
 
@@ -26,8 +26,8 @@ public class Ticket {
 
     }
 
-    public Ticket(User user, Movie movie, Integer numberOfSeats) {
-        this.user = user;
+    public Ticket(Client client, Movie movie, Integer numberOfSeats) {
+        this.client = client;
         this.movie = movie;
         this.numberOfSeats = numberOfSeats;
     }
