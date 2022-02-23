@@ -20,8 +20,7 @@ public class Actor {
     public Actor() {
     }
 
-    public Actor(Long actorId, String name, String surname) {
-        this.actorId = actorId;
+    public Actor(String name, String surname) {
         this.name = name;
         this.surname = surname;
     }

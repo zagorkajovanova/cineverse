@@ -24,6 +24,10 @@ public class HomeController {
         //TODO: master-template
         List<Movie> topMovies = this.movieService.getLatestMovies();
         model.addAttribute("topMovies", topMovies);
+
+        model.addAttribute("style1", "header-footer.css");
+        model.addAttribute("style2", "movie-card.css");
+        model.addAttribute("style3", "upcomingMovies.css");
         return "home";
     }
 }

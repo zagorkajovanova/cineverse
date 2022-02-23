@@ -48,4 +48,17 @@ public class Movie {
         this.writer = writer;
         this.actors = actors;
     }
+
+    public Movie(String title, String genre, String description, String trailerUrl, LocalDate showtime,
+                 String duration, Float ticketPrice, String director, String writer) {
+        this.title = title;
+        this.genre = genre;
+        this.description = description;
+        this.trailerUrl = trailerUrl;
+        this.showtime = showtime;
+        this.duration = duration;
+        this.ticketPrice = ticketPrice;
+        this.director = director;
+        this.writer = writer;
+    }
 }

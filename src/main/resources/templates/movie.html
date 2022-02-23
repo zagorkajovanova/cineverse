@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <title>Cineverse - Movie</title>
     <link rel="stylesheet" th:href="@{'~/css/{style}' (style=${style1})}">
+    <link rel="stylesheet" th:href="@{'~/css/{style}' (style=${style2})}">
+    <link rel="stylesheet" th:href="@{'~/css/{style}' (style=${style3})}">
 </head>
 <body>
 <!--    header-->
@@ -43,15 +45,63 @@
     </header>
     <!--    end of header-->
 
+    <div class="container" style="margin-top: 10px">
+        <h2><p class="target" style="font-size: 0.7rem">EXCELLENT CHOICE-BOOK YOUR TICKET FAST AND EASY</p></h2>
+    </div>
 
-<!--    footer-->
+    <div class="container" style="margin-top: -15px;">
+        <div class="movie_card" id="bright">
+            <div class="info_section d-flex justify-content-center">
+                <div class="row">
+                    <div class="col" style="position: relative">
+                        <div class="movie_header">
+                            <h1><th:block th:text="${movie.getTitle()}"></th:block></h1>
+                            <h4><th:block th:text="${movieYear}"></th:block>, <th:block th:text="${movie.getDirector()}"></th:block></h4>
+                            <span class="minutes"><th:block th:text="${movieHours}"></th:block> <th:block th:text="${movieMins}"></th:block></span>
+                            <p class="type"><th:block th:text="${movie.getGenre()}"></th:block></p>
+                            <a href="#"><img style="width: 25px; padding-left: 5px;" src="/img/like.png"/></a>
+                        </div>
+                        <div class="movie_desc">
+                            <p class="text"><th:block th:text="${movie.getDescription()}"></th:block></p>
+                        </div>
+                        <div class="stars">
+                            <ul>
+                                <li>Stars: </li>
+                                <li th:each="actor : ${actors}">
+                                    <th:block th:text="${actor.getName()}"></th:block> <th:block th:text=" ${actor.getSurname()} "></th:block> |
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="movie_social" style="position: absolute; bottom: 0">
+                            <ul>
+                                <li><a th:href="'/movie/' + ${movie.getMovieId()} + '/seats'">Book ticket</a></li>
+                                <li><a th:href="${movie.getTrailerUrl()}">Watch trailer</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="movie_header">
+                            <img class="locandina" th:src="${movie.getPoster().getImageUrl()}"/>
+                        </div>
+                        <div class="price text-left" style="margin-top: 180px; font-size: 15px">
+                            <p><span class="priceTitle">Showtime: </span> <th:block th:text="${movie.getShowtime()}"></th:block></p>
+                            <p><span class="priceTitle">Price: </span> $<th:block th:text="${movie.getTicketPrice()}"></th:block></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="blur_back bright_back"></div>
+        </div>
+    </div>
+
+    <!--    footer-->
     <footer>
         <div class="row mb-0 mt-5 mx-4 row-2 justify-content-xl-around justify-content-sm-between">
             <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 pt-2 order-1">
                 <div style="height: 150px; margin-top: -75px">
                     <img src="/img/logo1.png" style="width: 250px">
                 </div><hr>
-                <p style="text-align: justify">Enjoy your online ticket booking for your favorite movies. New movies every week.<br/>
+                <p class="footerDesc" style="text-align: justify">Enjoy your online ticket booking for your favorite movies. New movies every week.<br/>
                     You have a movie suggestion? Let us know at out offical email!</p>
                 <div id="social" class="text-center">
                     <a href="#"><img src="/img/facebook-logo.png" style="width: 30px; padding-right: 5px"></a>
@@ -87,7 +137,7 @@
         <hr class="line">
         <div class="row text-center py-3">
             <div class="col">
-                <p class="text-muted"><b>© 2022 Cineverse</b> </p>
+                <p class="text-muted copyright"><b>© 2022 Cineverse</b> </p>
             </div>
         </div>
     </footer>

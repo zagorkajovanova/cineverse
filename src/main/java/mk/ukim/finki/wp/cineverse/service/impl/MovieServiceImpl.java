@@ -4,6 +4,7 @@ import mk.ukim.finki.wp.cineverse.model.Actor;
 import mk.ukim.finki.wp.cineverse.model.Image;
 import mk.ukim.finki.wp.cineverse.model.Movie;
 import mk.ukim.finki.wp.cineverse.model.exceptions.MovieNotFoundException;
+import mk.ukim.finki.wp.cineverse.repository.ActorRepository;
 import mk.ukim.finki.wp.cineverse.repository.MovieRepository;
 import mk.ukim.finki.wp.cineverse.service.MovieService;
 import org.springframework.stereotype.Service;

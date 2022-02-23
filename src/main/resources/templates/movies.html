@@ -9,304 +9,304 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-    <link rel="stylesheet" href="css/header-footer.css">
-    <link rel="stylesheet" href="css/movies-page-title.css">
-    <link rel="stylesheet" href="css/movies-carousel.css">
+    <link rel="stylesheet" th:href="@{'~/css/{style}' (style=${style1})}">
+    <link rel="stylesheet" th:href="@{'~/css/{style}' (style=${style2})}">
+    <link rel="stylesheet" th:href="@{'~/css/{style}' (style=${style3})}">
 
 
 </head>
 <body>
-    <!--    header-->
-    <header class="navigation">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-center" id="navbarNav" >
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/movies">Movies</a>
-                    </li>
-                </ul>
-                <div>
-                    <a class="navbar-brand" href="/home">
-                        <img id="logo" src="img/logo1.png" alt="Logo" style="max-width: 300px;">
-                    </a>
-                </div>
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">About Us</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Login</a>
-                    </li>
-                </ul>
+<!--    header-->
+<header class="navigation">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-center" id="navbarNav" >
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/movies">Movies</a>
+                </li>
+            </ul>
+            <div>
+                <a class="navbar-brand" href="/home">
+                    <img id="logo" src="img/logo1.png" alt="Logo" style="max-width: 300px;">
+                </a>
             </div>
-        </nav>
-    </header>
-    <!--    end of header-->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Login</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<!--    end of header-->
 
-    <div class="container">
-        <h2><p class="target">NEW MOVIES EVERY WEEK</p></h2>
-    </div>
+<div class="container">
+    <h2><p class="target" style="font-size: 0.7rem">NEW MOVIES EVERY WEEK</p></h2>
+</div>
 
 
 <!--   fantasy movies carousel-->
-    <div class="container movieCarousel"
-        style="padding: 10px 60px 10px 60px; border-radius: 10px; box-shadow: 0px 0px 120px -25px rgba(0, 0, 0, 0.5);">
-        <header>
-            <h4>Fantasy/Comedy</h4>
-        </header>
-        <div class="row">
-            <div class="MultiCarousel" data-items="1,3,4,5" data-slide="1" data-interval="1000">
-                <div class="MultiCarousel-inner">
-                    <div class="item" th:each="movie : ${fantasyMovies}">
-                        <a th:href="'/movie/' + ${movie.getMovieId()}">
-                            <div class="pad15">
-                                <img style="width: 150px" th:src="${movie.getPoster().getImageUrl()}">
-                            </div>
-                        </a>
-                    </div>
+<div class="container movieCarousel"
+     style="padding: 10px 60px 10px 60px; border-radius: 10px; box-shadow: 0px 0px 120px -25px rgba(0, 0, 0, 0.5);">
+    <header>
+        <h4>Fantasy/Comedy</h4>
+    </header>
+    <div class="row">
+        <div class="MultiCarousel" data-items="1,3,4,5" data-slide="1" data-interval="1000">
+            <div class="MultiCarousel-inner">
+                <div class="item" th:each="movie : ${fantasyMovies}">
+                    <a th:href="'/movie/' + ${movie.getMovieId()}">
+                        <div class="pad15">
+                            <img style="width: 150px" th:src="${movie.getPoster().getImageUrl()}">
+                        </div>
+                    </a>
                 </div>
-                <button class="btn btn-primary leftLst"><</button>
-                <button class="btn btn-primary rightLst">></button>
             </div>
+            <button class="btn btn-primary leftLst"><</button>
+            <button class="btn btn-primary rightLst">></button>
         </div>
     </div>
+</div>
 
 
 <!--   action movies carousel-->
-    <div class="container movieCarousel"
-         style="padding: 10px 60px 10px 60px; border-radius: 10px; box-shadow: 0px 0px 120px -25px rgba(0, 0, 0, 0.5);">
-        <header>
-            <h4>Action</h4>
-        </header>
-        <div class="row">
-            <div class="MultiCarousel" data-items="1,3,4,5" data-slide="1" data-interval="1000">
-                <div class="MultiCarousel-inner">
-                    <div class="item" th:each="movie : ${actionMovies}">
-                        <a th:href="'/movie/' + ${movie.getMovieId()}">
-                            <div class="pad15">
-                                <img style="width: 150px" th:src="${movie.getPoster().getImageUrl()}">
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <button class="btn btn-primary leftLst"><</button>
-                <button class="btn btn-primary rightLst">></button>
-            </div>
-        </div>
-    </div>
-
-    <!--   romance movies carousel-->
-    <div class="container movieCarousel"
-         style="padding: 10px 60px 10px 60px; border-radius: 10px; box-shadow: 0px 0px 120px -25px rgba(0, 0, 0, 0.5);">
-        <header>
-           <h4>Romance</h4>
-        </header>
-        <div class="row">
-            <div class="MultiCarousel" data-items="1,3,4,5" data-slide="1" data-interval="1000">
-                <div class="MultiCarousel-inner">
-                    <div class="item" th:each="movie : ${romanceMovies}">
-                        <a th:href="'/movie/' + ${movie.getMovieId()}">
-                            <div class="pad15">
-                                <img style="width: 150px" th:src="${movie.getPoster().getImageUrl()}">
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <button class="btn btn-primary leftLst"><</button>
-                <button class="btn btn-primary rightLst">></button>
-            </div>
-        </div>
-    </div>
-
-    <!--   horror movies carousel-->
-    <div class="container movieCarousel"
-         style="padding: 10px 60px 10px 60px; border-radius: 10px; box-shadow: 0px 0px 120px -25px rgba(0, 0, 0, 0.5);">
-        <header>
-             <h4>Horror</h4>
-        </header>
-        <div class="row">
-            <div class="MultiCarousel" data-items="1,3,4,5" data-slide="1" data-interval="1000">
-                <div class="MultiCarousel-inner">
-                    <div class="item" th:each="movie : ${horrorMovies}">
-                        <a th:href="'/movie/' + ${movie.getMovieId()}">
-                            <div class="pad15">
-                                <img style="width: 150px" th:src="${movie.getPoster().getImageUrl()}">
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <button class="btn btn-primary leftLst"><</button>
-                <button class="btn btn-primary rightLst">></button>
-            </div>
-        </div>
-    </div>
-
-    <div class="container text-right" id="addMovieButton">
-        <a href="/movies/add-movie" class="btn btn-dark">Add new movie</a>
-    </div>
-
-    <!--    footer-->
-    <footer>
-        <div class="row mb-0 mt-5 mx-4 row-2 justify-content-xl-around justify-content-sm-between">
-            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 pt-2 order-1">
-                <div style="height: 150px; margin-top: -75px">
-                    <img src="/img/logo1.png" style="width: 250px">
-                </div><hr>
-                <p style="text-align: justify">Enjoy your online ticket booking for your favorite movies. New movies every week.<br/>
-                    You have a movie suggestion? Let us know at out offical email!</p>
-                <div id="social" class="text-center">
-                    <a href="#"><img src="/img/facebook-logo.png" style="width: 30px; padding-right: 5px"></a>
-                    <a href="#"><img src="/img/instagram.png" style="width: 30px; padding-right: 5px"></a>
-                    <a href="#"><img src="/img/twitter.png" style="width: 30px; padding-right: 5px"></a>
-                    <a href="#"><img src="/img/linkedin.png" style="width: 30px; padding-right: 5px"></a>
-                    <a href="#"><img src="/img/whatsapp.png" style="width: 30px; padding-right: 5px"></a>
+<div class="container movieCarousel"
+     style="padding: 10px 60px 10px 60px; border-radius: 10px; box-shadow: 0px 0px 120px -25px rgba(0, 0, 0, 0.5);">
+    <header>
+        <h4>Action</h4>
+    </header>
+    <div class="row">
+        <div class="MultiCarousel" data-items="1,3,4,5" data-slide="1" data-interval="1000">
+            <div class="MultiCarousel-inner">
+                <div class="item" th:each="movie : ${actionMovies}">
+                    <a th:href="'/movie/' + ${movie.getMovieId()}">
+                        <div class="pad15">
+                            <img style="width: 150px" th:src="${movie.getPoster().getImageUrl()}">
+                        </div>
+                    </a>
                 </div>
             </div>
-            <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 pt-4 order-2 mr-3">
-                <ul class="list-unstyled">
-                    <li class="mt-md-0 mt-4">Helpful Links</li>
-                    <li><a href="/home">Home</a></li>
-                    <li><a href="/movies">Movies</a></li>
-                    <li><a>About Us</a></li>
-                    <li><a>Login</a></li>
-                </ul>
+            <button class="btn btn-primary leftLst"><</button>
+            <button class="btn btn-primary rightLst">></button>
+        </div>
+    </div>
+</div>
+
+<!--   romance movies carousel-->
+<div class="container movieCarousel"
+     style="padding: 10px 60px 10px 60px; border-radius: 10px; box-shadow: 0px 0px 120px -25px rgba(0, 0, 0, 0.5);">
+    <header>
+        <h4>Romance</h4>
+    </header>
+    <div class="row">
+        <div class="MultiCarousel" data-items="1,3,4,5" data-slide="1" data-interval="1000">
+            <div class="MultiCarousel-inner">
+                <div class="item" th:each="movie : ${romanceMovies}">
+                    <a th:href="'/movie/' + ${movie.getMovieId()}">
+                        <div class="pad15">
+                            <img style="width: 150px" th:src="${movie.getPoster().getImageUrl()}">
+                        </div>
+                    </a>
+                </div>
             </div>
-            <div class="col-xl-auto col-lg-6 col-md-6 pt-4 col-sm-6 my-sm-0 order-md-4 order-sm-3 d-flex" style="margin-left: -300px">
-                <ul class="list-unstyled">
-                    <li class="mt-md-0 mt-4">Contact Us</li>
-                    <img src="/img/email.png" style="width: 20px">
-                    <li style="display: inline-block">cineverse@contact.com</li><br/>
-                    <img src="/img/email.png" style="width: 20px">
-                    <li style="display: inline-block">jovanovazagorka@outlook.com</li><br/>
-                    <img src="/img/telephone.png" style="width: 20px">
-                    <li style="display: inline-block">+ 01 234 567 88</li><br/>
-                    <img src="/img/telephone.png" style="width: 20px">
-                    <li style="display: inline-block">+ 01 234 567 89</li>
-                </ul>
+            <button class="btn btn-primary leftLst"><</button>
+            <button class="btn btn-primary rightLst">></button>
+        </div>
+    </div>
+</div>
+
+<!--   horror movies carousel-->
+<div class="container movieCarousel"
+     style="padding: 10px 60px 10px 60px; border-radius: 10px; box-shadow: 0px 0px 120px -25px rgba(0, 0, 0, 0.5);">
+    <header>
+        <h4>Horror</h4>
+    </header>
+    <div class="row">
+        <div class="MultiCarousel" data-items="1,3,4,5" data-slide="1" data-interval="1000">
+            <div class="MultiCarousel-inner">
+                <div class="item" th:each="movie : ${horrorMovies}">
+                    <a th:href="'/movie/' + ${movie.getMovieId()}">
+                        <div class="pad15">
+                            <img style="width: 150px" th:src="${movie.getPoster().getImageUrl()}">
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <button class="btn btn-primary leftLst"><</button>
+            <button class="btn btn-primary rightLst">></button>
+        </div>
+    </div>
+</div>
+
+<div class="container text-right" id="addMovieButton">
+    <a href="/movies/add-movie" class="btn btn-dark">Add new movie</a>
+</div>
+
+<!--    footer-->
+<footer>
+    <div class="row mb-0 mt-5 mx-4 row-2 justify-content-xl-around justify-content-sm-between">
+        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 pt-2 order-1">
+            <div style="height: 150px; margin-top: -75px">
+                <img src="/img/logo1.png" style="width: 250px">
+            </div><hr>
+            <p style="text-align: justify" class="footerDesc">Enjoy your online ticket booking for your favorite movies. New movies every week.<br/>
+                You have a movie suggestion? Let us know at out offical email!</p>
+            <div id="social" class="text-center">
+                <a href="#"><img src="/img/facebook-logo.png" style="width: 30px; padding-right: 5px"></a>
+                <a href="#"><img src="/img/instagram.png" style="width: 30px; padding-right: 5px"></a>
+                <a href="#"><img src="/img/twitter.png" style="width: 30px; padding-right: 5px"></a>
+                <a href="#"><img src="/img/linkedin.png" style="width: 30px; padding-right: 5px"></a>
+                <a href="#"><img src="/img/whatsapp.png" style="width: 30px; padding-right: 5px"></a>
             </div>
         </div>
-        <hr class="line">
-        <div class="row text-center py-3">
-            <div class="col">
-                <p class="text-muted"><b>© 2022 Cineverse</b> </p>
-            </div>
+        <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 pt-4 order-2 mr-3">
+            <ul class="list-unstyled">
+                <li class="mt-md-0 mt-4">Helpful Links</li>
+                <li><a href="/home">Home</a></li>
+                <li><a href="/movies">Movies</a></li>
+                <li><a>About Us</a></li>
+                <li><a>Login</a></li>
+            </ul>
         </div>
-    </footer>
+        <div class="col-xl-auto col-lg-6 col-md-6 pt-4 col-sm-6 my-sm-0 order-md-4 order-sm-3 d-flex" style="margin-left: -300px">
+            <ul class="list-unstyled">
+                <li class="mt-md-0 mt-4">Contact Us</li>
+                <img src="/img/email.png" style="width: 20px">
+                <li style="display: inline-block">cineverse@contact.com</li><br/>
+                <img src="/img/email.png" style="width: 20px">
+                <li style="display: inline-block">jovanovazagorka@outlook.com</li><br/>
+                <img src="/img/telephone.png" style="width: 20px">
+                <li style="display: inline-block">+ 01 234 567 88</li><br/>
+                <img src="/img/telephone.png" style="width: 20px">
+                <li style="display: inline-block">+ 01 234 567 89</li>
+            </ul>
+        </div>
+    </div>
+    <hr class="line">
+    <div class="row text-center py-3">
+        <div class="col">
+            <p class="text-muted copyright"><b>© 2022 Cineverse</b> </p>
+        </div>
+    </div>
+</footer>
 <!--    end of footer-->
 
 <!--    script used for movies carousel-->
-    <script>
-        $(document).ready(function () {
-            var itemsMainDiv = ('.MultiCarousel');
-            var itemsDiv = ('.MultiCarousel-inner');
-            var itemWidth = "";
+<script>
+    $(document).ready(function () {
+        var itemsMainDiv = ('.MultiCarousel');
+        var itemsDiv = ('.MultiCarousel-inner');
+        var itemWidth = "";
 
-            $('.leftLst, .rightLst').click(function () {
-                var condition = $(this).hasClass("leftLst");
-                if (condition)
-                    click(0, this);
-                else
-                    click(1, this)
-            });
-
-            ResCarouselSize();
-
-
-
-
-            $(window).resize(function () {
-                ResCarouselSize();
-            });
-
-            //this function define the size of the items
-            function ResCarouselSize() {
-                var incno = 0;
-                var dataItems = ("data-items");
-                var itemClass = ('.item');
-                var id = 0;
-                var btnParentSb = '';
-                var itemsSplit = '';
-                var sampwidth = $(itemsMainDiv).width();
-                var bodyWidth = $('body').width();
-                $(itemsDiv).each(function () {
-                    id = id + 1;
-                    var itemNumbers = $(this).find(itemClass).length;
-                    btnParentSb = $(this).parent().attr(dataItems);
-                    itemsSplit = btnParentSb.split(',');
-                    $(this).parent().attr("id", "MultiCarousel" + id);
-
-
-                    if (bodyWidth >= 1200) {
-                        incno = itemsSplit[3];
-                        itemWidth = sampwidth / incno;
-                    }
-                    else if (bodyWidth >= 992) {
-                        incno = itemsSplit[2];
-                        itemWidth = sampwidth / incno;
-                    }
-                    else if (bodyWidth >= 768) {
-                        incno = itemsSplit[1];
-                        itemWidth = sampwidth / incno;
-                    }
-                    else {
-                        incno = itemsSplit[0];
-                        itemWidth = sampwidth / incno;
-                    }
-                    $(this).css({ 'transform': 'translateX(0px)', 'width': itemWidth * itemNumbers });
-                    $(this).find(itemClass).each(function () {
-                        $(this).outerWidth(itemWidth);
-                    });
-
-                    $(".leftLst").addClass("over");
-                    $(".rightLst").removeClass("over");
-
-                });
-            }
-
-            //this function used to move the items
-            function ResCarousel(e, el, s) {
-                var leftBtn = ('.leftLst');
-                var rightBtn = ('.rightLst');
-                var translateXval = '';
-                var divStyle = $(el + ' ' + itemsDiv).css('transform');
-                var values = divStyle.match(/-?[\d\.]+/g);
-                var xds = Math.abs(values[4]);
-                if (e == 0) {
-                    translateXval = parseInt(xds) - parseInt(itemWidth * s);
-                    $(el + ' ' + rightBtn).removeClass("over");
-
-                    if (translateXval <= itemWidth / 2) {
-                        translateXval = 0;
-                        $(el + ' ' + leftBtn).addClass("over");
-                    }
-                }
-                else if (e == 1) {
-                    var itemsCondition = $(el).find(itemsDiv).width() - $(el).width();
-                    translateXval = parseInt(xds) + parseInt(itemWidth * s);
-                    $(el + ' ' + leftBtn).removeClass("over");
-
-                    if (translateXval >= itemsCondition - itemWidth / 2) {
-                        translateXval = itemsCondition;
-                        $(el + ' ' + rightBtn).addClass("over");
-                    }
-                }
-                $(el + ' ' + itemsDiv).css('transform', 'translateX(' + -translateXval + 'px)');
-            }
-
-            //It is used to get some elements from btn
-            function click(ell, ee) {
-                var Parent = "#" + $(ee).parent().attr("id");
-                var slide = $(Parent).attr("data-slide");
-                ResCarousel(ell, Parent, slide);
-            }
-
+        $('.leftLst, .rightLst').click(function () {
+            var condition = $(this).hasClass("leftLst");
+            if (condition)
+                click(0, this);
+            else
+                click(1, this)
         });
-    </script>
+
+        ResCarouselSize();
+
+
+
+
+        $(window).resize(function () {
+            ResCarouselSize();
+        });
+
+        //this function define the size of the items
+        function ResCarouselSize() {
+            var incno = 0;
+            var dataItems = ("data-items");
+            var itemClass = ('.item');
+            var id = 0;
+            var btnParentSb = '';
+            var itemsSplit = '';
+            var sampwidth = $(itemsMainDiv).width();
+            var bodyWidth = $('body').width();
+            $(itemsDiv).each(function () {
+                id = id + 1;
+                var itemNumbers = $(this).find(itemClass).length;
+                btnParentSb = $(this).parent().attr(dataItems);
+                itemsSplit = btnParentSb.split(',');
+                $(this).parent().attr("id", "MultiCarousel" + id);
+
+
+                if (bodyWidth >= 1200) {
+                    incno = itemsSplit[3];
+                    itemWidth = sampwidth / incno;
+                }
+                else if (bodyWidth >= 992) {
+                    incno = itemsSplit[2];
+                    itemWidth = sampwidth / incno;
+                }
+                else if (bodyWidth >= 768) {
+                    incno = itemsSplit[1];
+                    itemWidth = sampwidth / incno;
+                }
+                else {
+                    incno = itemsSplit[0];
+                    itemWidth = sampwidth / incno;
+                }
+                $(this).css({ 'transform': 'translateX(0px)', 'width': itemWidth * itemNumbers });
+                $(this).find(itemClass).each(function () {
+                    $(this).outerWidth(itemWidth);
+                });
+
+                $(".leftLst").addClass("over");
+                $(".rightLst").removeClass("over");
+
+            });
+        }
+
+        //this function used to move the items
+        function ResCarousel(e, el, s) {
+            var leftBtn = ('.leftLst');
+            var rightBtn = ('.rightLst');
+            var translateXval = '';
+            var divStyle = $(el + ' ' + itemsDiv).css('transform');
+            var values = divStyle.match(/-?[\d\.]+/g);
+            var xds = Math.abs(values[4]);
+            if (e == 0) {
+                translateXval = parseInt(xds) - parseInt(itemWidth * s);
+                $(el + ' ' + rightBtn).removeClass("over");
+
+                if (translateXval <= itemWidth / 2) {
+                    translateXval = 0;
+                    $(el + ' ' + leftBtn).addClass("over");
+                }
+            }
+            else if (e == 1) {
+                var itemsCondition = $(el).find(itemsDiv).width() - $(el).width();
+                translateXval = parseInt(xds) + parseInt(itemWidth * s);
+                $(el + ' ' + leftBtn).removeClass("over");
+
+                if (translateXval >= itemsCondition - itemWidth / 2) {
+                    translateXval = itemsCondition;
+                    $(el + ' ' + rightBtn).addClass("over");
+                }
+            }
+            $(el + ' ' + itemsDiv).css('transform', 'translateX(' + -translateXval + 'px)');
+        }
+
+        //It is used to get some elements from btn
+        function click(ell, ee) {
+            var Parent = "#" + $(ee).parent().attr("id");
+            var slide = $(Parent).attr("data-slide");
+            ResCarousel(ell, Parent, slide);
+        }
+
+    });
+</script>
 </body>
 </html>
