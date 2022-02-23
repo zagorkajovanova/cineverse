@@ -8,4 +8,5 @@ public interface ImageService {
     Optional<Image> findById(Long id);
     void deleteById(Long id);
     Image save(String imageUrl);
+    Image findByUrl(String url);
 }

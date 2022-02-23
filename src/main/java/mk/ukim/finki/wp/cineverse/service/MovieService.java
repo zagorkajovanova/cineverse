@@ -11,6 +11,7 @@ public interface MovieService {
     List<Movie> listAllMovies();
     Optional<Movie> findById(Long id);
     Movie removeById(Long id);
+    Movie removeByTitle(String title);
     Movie save(String title, String genre, String description,
                Image poster, String trailerUrl, String showtime, String duration,
                Float ticketPrice, String director, String writer, List<Actor> actors);

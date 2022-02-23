@@ -1,15 +1,19 @@
 package mk.ukim.finki.wp.cineverse.web.controller;
 
 import mk.ukim.finki.wp.cineverse.model.Actor;
+import mk.ukim.finki.wp.cineverse.model.Image;
 import mk.ukim.finki.wp.cineverse.model.Movie;
 import mk.ukim.finki.wp.cineverse.service.ActorService;
+import mk.ukim.finki.wp.cineverse.service.ImageService;
 import mk.ukim.finki.wp.cineverse.service.MovieService;
+import mk.ukim.finki.wp.cineverse.service.impl.FileService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,9 +25,15 @@ import java.util.stream.Stream;
 public class MoviesController {
 
     private final MovieService movieService;
+    private final ImageService imageService;
+    private final FileService fileService;
+    private final ActorService actorService;
 
-    public MoviesController(MovieService movieService) {
+    public MoviesController(MovieService movieService, ImageService imageService, FileService fileService, ActorService actorService) {
         this.movieService = movieService;
+        this.imageService = imageService;
+        this.fileService = fileService;
+        this.actorService = actorService;
     }
 
     @GetMapping
@@ -38,6 +48,7 @@ public class MoviesController {
 
         List<Movie> fantasyComedy = Stream.concat(fantasyMovies.stream(), comedyMovies.stream())
                 .collect(Collectors.toList());
+
 
         model.addAttribute("movies", movies);
         model.addAttribute("fantasyMovies", fantasyComedy);
@@ -61,32 +72,37 @@ public class MoviesController {
     }
 
     //TODO: implement PostMapping for add movie
-//    @PostMapping("/add")
-//    public String saveMovie(@RequestParam String title,
-//                            @RequestParam String genre,
-//                            @RequestParam String director,
-//                            @RequestParam String writer,
-//                            @RequestParam String date,
-//                            @RequestParam String duration,
-//                            @RequestParam String actors,
-//                            @RequestParam String price,
-//                            @RequestParam String trailerUrl,
-//                            @RequestParam String posterUrl,
-//                            @RequestParam String description){
-//
-////        String[] pom = actors.split(",");
-////        List<Actor> actorList = new ArrayList<>();
-////        for (String s : pom) {
-////            String[] fullName = s.split(" ");
-////            String actorName = fullName[0];
-////            String actorSurname = fullName[1];
-////            actorList.add(new Actor(actorName, actorSurname));
-////        }
-//
-//        Float ticketPrice = Float.parseFloat(price);
-//
-//        this.movieService.save(title,genre,description,trailerUrl,date,duration,ticketPrice,director,writer);
-//        return "redirect:/movies";
-//    }
+    @PostMapping("/add")
+    public String saveMovie(@RequestParam String title,
+                            @RequestParam String genre,
+                            @RequestParam String director,
+                            @RequestParam String writer,
+                            @RequestParam String date,
+                            @RequestParam String duration,
+                            @RequestParam String actors,
+                            @RequestParam String price,
+                            @RequestParam String trailerUrl,
+                            @RequestParam MultipartFile posterUrl,
+                            @RequestParam String description){
+
+//        String[] pom = actors.split(",");
+//        List<Actor> actorList = new ArrayList<>();
+//        for (String s : pom) {
+//            String[] fullName = s.split(" ");
+//            String actorName = fullName[0];
+//            String actorSurname = fullName[1];
+//            actorList.add(new Actor(actorName, actorSurname));
+//            this.actorService.save(actorName,actorSurname);
+//        }
+
+        //TODO: add actors from input
+        List<Actor> actors1 = this.actorService.findAll().subList(0,3);
+        Float ticketPrice = Float.parseFloat(price);
+        Image image = this.imageService.save(FilepathConstants.IMAGE_DESTINATION_PREFIX + posterUrl.getOriginalFilename());
+        fileService.uploadFile(posterUrl);
+
+        this.movieService.save(title,genre,description, image, trailerUrl,date,duration,ticketPrice,director,writer,actors1);
+        return "redirect:/movies";
+    }
 
 }

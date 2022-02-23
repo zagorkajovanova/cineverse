@@ -29,4 +29,9 @@ public class ActorServiceImpl implements ActorService {
     public Optional<Actor> findById(Long actorId) {
         return this.actorRepository.findById(actorId);
     }
+
+    @Override
+    public Actor save(String name, String surname) {
+        return this.actorRepository.save(new Actor(name,surname));
+    }
 }

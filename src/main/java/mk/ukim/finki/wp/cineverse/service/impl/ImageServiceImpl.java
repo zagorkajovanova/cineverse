@@ -31,4 +31,9 @@ public class ImageServiceImpl implements ImageService {
         Image image = new Image(imageUrl);
         return this.imageRepository.save(image);
     }
+
+    @Override
+    public Image findByUrl(String url) {
+        return this.imageRepository.findByImageUrl(url);
+    }
 }

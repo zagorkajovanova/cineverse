@@ -8,4 +8,5 @@ import java.util.Optional;
 public interface ActorService {
     List<Actor> findAll();
     Optional<Actor> findById(Long actorId);
+    Actor save(String name, String surname);
 }

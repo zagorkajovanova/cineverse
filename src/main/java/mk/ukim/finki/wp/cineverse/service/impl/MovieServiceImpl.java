@@ -43,8 +43,16 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
+    public Movie removeByTitle(String title) {
+        Movie movie = this.movieRepository.findByTitle(title);
+        this.movieRepository.delete(movie);
+        return movie;
+    }
+
+    @Override
     public Movie save(String title, String genre, String description, Image poster, String trailerUrl,
-                      String showtime, String duration, Float ticketPrice, String director, String writer, List<Actor> actors) {
+                      String showtime, String duration, Float ticketPrice, String director, String writer,List<Actor>actors) {
+
         LocalDate date = LocalDate.parse(showtime);
         Movie movie = new Movie(title,genre,description,poster,trailerUrl,date,duration,ticketPrice,director,writer,actors);
         return this.movieRepository.save(movie);

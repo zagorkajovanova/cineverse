@@ -49,7 +49,7 @@ public class Movie {
         this.actors = actors;
     }
 
-    public Movie(String title, String genre, String description, String trailerUrl, LocalDate showtime,
+    public Movie(String title, String genre, String description, Image poster, String trailerUrl, LocalDate showtime,
                  String duration, Float ticketPrice, String director, String writer) {
         this.title = title;
         this.genre = genre;
@@ -60,5 +60,6 @@ public class Movie {
         this.ticketPrice = ticketPrice;
         this.director = director;
         this.writer = writer;
+        this.poster = poster;
     }
 }
