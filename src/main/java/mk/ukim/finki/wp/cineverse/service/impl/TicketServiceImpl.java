@@ -1,8 +1,8 @@
 package mk.ukim.finki.wp.cineverse.service.impl;
 
-import mk.ukim.finki.wp.cineverse.model.Client;
 import mk.ukim.finki.wp.cineverse.model.Movie;
 import mk.ukim.finki.wp.cineverse.model.Ticket;
+import mk.ukim.finki.wp.cineverse.model.User;
 import mk.ukim.finki.wp.cineverse.repository.TicketRepository;
 import mk.ukim.finki.wp.cineverse.service.TicketService;
 import org.springframework.stereotype.Service;
@@ -20,8 +20,8 @@ public class TicketServiceImpl implements TicketService {
     }
 
     @Override
-    public List<Ticket> listAllTicketsByClient(Client client) {
-        return this.ticketRepository.findAllByClient(client);
+    public List<Ticket> listAllTicketsByUser(User user) {
+        return this.ticketRepository.findAllByUser(user);
     }
 
     @Override
@@ -35,8 +35,8 @@ public class TicketServiceImpl implements TicketService {
     }
 
     @Override
-    public Ticket create(Client client, Movie movie, Integer numberOfSeats) {
-        Ticket ticket = new Ticket(client,movie,numberOfSeats);
+    public Ticket create(User user, Movie movie, Integer numberOfSeats) {
+        Ticket ticket = new Ticket(user,movie,numberOfSeats);
         return this.ticketRepository.save(ticket);
     }
 

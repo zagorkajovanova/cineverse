@@ -47,5 +47,15 @@ public class MovieController {
         return "movie";
     }
 
+    @GetMapping("{id}/trailer")
+    public String getTrailer(Model model, @PathVariable String id) {
+        Long movieId = Long.parseLong(id);
+        Movie movie = this.movieService.findById(movieId).orElseThrow(() -> new MovieNotFoundException(movieId));
+
+        model.addAttribute("movie", movie);
+        model.addAttribute("style1", "header-footer.css");
+        return "trailer";
+    }
+
     //TODO: implement addToFavorites
 }

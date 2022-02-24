@@ -1,8 +1,8 @@
 package mk.ukim.finki.wp.cineverse.service.impl;
 
-import mk.ukim.finki.wp.cineverse.model.Client;
 import mk.ukim.finki.wp.cineverse.model.Movie;
 import mk.ukim.finki.wp.cineverse.model.Review;
+import mk.ukim.finki.wp.cineverse.model.User;
 import mk.ukim.finki.wp.cineverse.model.exceptions.MovieNotFoundException;
 import mk.ukim.finki.wp.cineverse.repository.MovieRepository;
 import mk.ukim.finki.wp.cineverse.repository.ReviewRepository;
@@ -39,7 +39,7 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
-    public Review create(String comment, Movie movie, Client author) {
+    public Review create(String comment, Movie movie, User author) {
         Review review = new Review(comment,movie,author);
         return this.reviewRepository.save(review);
     }
