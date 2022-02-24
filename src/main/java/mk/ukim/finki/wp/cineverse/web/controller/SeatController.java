@@ -5,9 +5,7 @@ import mk.ukim.finki.wp.cineverse.model.exceptions.MovieNotFoundException;
 import mk.ukim.finki.wp.cineverse.service.MovieService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping
@@ -26,8 +24,17 @@ public class SeatController {
 
         model.addAttribute("movie", movie);
 
-        model.addAttribute("style1", "seats.css");
-        model.addAttribute("script1","seats.js");
+        model.addAttribute("style1", "chooseSeats.css");
+        model.addAttribute("style2", "header-footer.css");
+        model.addAttribute("script1","chooseSeats.js");
         return "seats";
+    }
+
+    @PostMapping("/chooseSeats")
+    public String getSeats(@RequestParam String numSeats){
+        Long num = Long.parseLong(numSeats);
+
+        //TODO: create ticket and implement summary controller
+        return "redirect:/movies";
     }
 }

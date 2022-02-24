@@ -38,6 +38,7 @@ public class MovieController {
         model.addAttribute("movieYear", movieYear);
         model.addAttribute("movieHours", durationPom[0]);
         model.addAttribute("movieMins", durationPom[1]);
+        model.addAttribute("movieTitle", movie.getTitle());
         model.addAttribute("actors", actors);
 
         //CSS
