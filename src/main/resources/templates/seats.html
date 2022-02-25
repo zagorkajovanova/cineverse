@@ -45,77 +45,94 @@
 
 
 <div class="container justify-content-center">
-    <div class="screen"></div>
 
-        <div class="row">
-            <div class="seat"></div>
-            <div class="seat"></div>
-            <div class="seat"></div>
-            <div class="seat"></div>
-            <div class="seat"></div>
-            <div class="seat"></div>
-            <div class="seat"></div>
-            <div class="seat"></div>
+    <div class="movie_card pt-4 pb-4" id="bright">
+        <div class="row justify-content-center mt-4">
+             <div class="screen"></div>
         </div>
-        <div class="row">
-            <div class="seat"></div>
-            <div class="seat"></div>
-            <div class="seat"></div>
-            <div class="seat "></div>
-            <div class="seat "></div>
-            <div class="seat"></div>
-            <div class="seat"></div>
-            <div class="seat"></div>
-        </div>
-        <div class="row">
-            <div class="seat"></div>
-            <div class="seat"></div>
-            <div class="seat"></div>
-            <div class="seat"></div>
-            <div class="seat"></div>
-            <div class="seat"></div>
-            <div class="seat "></div>
-            <div class="seat "></div>
-        </div>
-        <div class="row">
-            <div class="seat"></div>
-            <div class="seat"></div>
-            <div class="seat"></div>
-            <div class="seat"></div>
-            <div class="seat"></div>
-            <div class="seat"></div>
-            <div class="seat"></div>
-            <div class="seat"></div>
-        </div>
-        <div class="row">
-            <div class="seat"></div>
-            <div class="seat"></div>
-            <div class="seat"></div>
-            <div class="seat "></div>
-            <div class="seat "></div>
-            <div class="seat"></div>
-            <div class="seat"></div>
-            <div class="seat"></div>
-        </div>
-        <div class="row">
-            <div class="seat"></div>
-            <div class="seat"></div>
-            <div class="seat"></div>
-            <div class="seat"></div>
-            <div class="seat "></div>
-            <div class="seat "></div>
-            <div class="seat "></div>
-            <div class="seat"></div>
+        <div class="row justify-content-center screenName">
+            <p>SCREEN</p>
         </div>
 
+            <div class="row justify-content-center">
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat "></div>
+                <div class="seat "></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat "></div>
+                <div class="seat "></div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat "></div>
+                <div class="seat "></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat "></div>
+                <div class="seat "></div>
+                <div class="seat "></div>
+                <div class="seat"></div><br/>
+            </div>
+            <div class="row justify-content-center">
+                <button class="btn btn-dark mt-2" id="clear" style="color: white; border-radius: 10px">Clear</button>
+                <button class="btn btn-dark ml-3 mt-2" id="confirm" style="color: white; border-radius: 10px">Confirm selected</button>
+            </div>
 
-        <button class="btn btn-dark">Confirm</button>
+    <!--        <button class="btn btn-dark">Choose selected seats</button>-->
 
+    </div>
 
-    <form action="/chooseSeats" method="POST">
-        <label>Num seats: </label><input class="form-control" type="text" id="seats" name="numSeats">
-        <button class="btn btn-dark">Next</button>
-    </form>
+    <div class="container">
+        <form class="form-inline justify-content-center" action="/chooseSeats" method="POST">
+            <div class="form-group row">
+                    <label class="inputLabel" for="seats" style="letter-spacing: 2px;">Number of seats: </label>
+                    <input class="form-control col-xs-2" type="text" id="seats" name="numSeats" style="border-radius: 10px">
+            </div>
+            <button class="btn btn-dark ml-4" style="border-radius: 10px">Continue</button>
+        </form>
+    </div>
+
 </div>
 
 <!--    footer-->
@@ -169,17 +186,25 @@
 
 <script>
     let numSeats = 0;
-
     $(document).ready(function(){
+
+        $("#clear").click(function (){
+            $(".selected").removeClass("selected");
+            numSeats = 0;
+            $("#seats").val(numSeats);
+        })
+
         $(".seat").click(function(){
             numSeats++;
+            $(this).toggleClass("selected");
         });
 
-        $(".btn").click(function(){
-            console.log(numSeats)
+        $("#confirm").click(function (){
             $("#seats").val(numSeats);
-        });
+        })
+
     });
+
 </script>
 
 
