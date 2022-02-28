@@ -30,4 +30,9 @@ public class HomeController {
         model.addAttribute("style3", "upcomingMovies.css");
         return "home";
     }
+
+    @GetMapping("/about-us")
+    public String getAboutUsPage(){
+        return "about-us";
+    }
 }
