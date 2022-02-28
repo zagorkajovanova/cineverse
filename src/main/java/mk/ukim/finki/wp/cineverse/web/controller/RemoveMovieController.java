@@ -25,7 +25,9 @@ public class RemoveMovieController {
         model.addAttribute("movies", movies);
         model.addAttribute("style1", "header-footer.css");
         model.addAttribute("style2", "add-movie.css");
-        return "remove-movie";
+        model.addAttribute("pageTitle", "Remove Movie");
+        model.addAttribute("bodyContent", "remove-movie");
+        return "master-template";
     }
 
     @PostMapping("/movie")

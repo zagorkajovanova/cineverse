@@ -38,14 +38,14 @@ public class MovieController {
         model.addAttribute("movieYear", movieYear);
         model.addAttribute("movieHours", durationPom[0]);
         model.addAttribute("movieMins", durationPom[1]);
-        model.addAttribute("movieTitle", movie.getTitle());
+        model.addAttribute("pageTitle", movie.getTitle());
         model.addAttribute("actors", actors);
 
-        //CSS
         model.addAttribute("style1", "header-footer.css");
         model.addAttribute("style2", "single-movie-display.css");
         model.addAttribute("style3", "movies-page-title.css");
-        return "movie";
+        model.addAttribute("bodyContent", "movie");
+        return "master-template";
     }
 
     @GetMapping("{id}/trailer")
@@ -54,8 +54,10 @@ public class MovieController {
         Movie movie = this.movieService.findById(movieId).orElseThrow(() -> new MovieNotFoundException(movieId));
 
         model.addAttribute("movie", movie);
+        model.addAttribute("pageTitle", "Movie Trailer");
         model.addAttribute("style1", "header-footer.css");
-        return "trailer";
+        model.addAttribute("bodyContent", "trailer");
+        return "master-template";
     }
 
     //TODO: implement addToFavorites

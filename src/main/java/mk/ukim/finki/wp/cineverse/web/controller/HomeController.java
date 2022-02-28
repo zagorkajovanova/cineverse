@@ -21,18 +21,22 @@ public class HomeController {
 
     @GetMapping(value = {"/", "/home"})
     public String getHomePage(Model model){
-        //TODO: master-template
         List<Movie> topMovies = this.movieService.getLatestMovies();
         model.addAttribute("topMovies", topMovies);
 
         model.addAttribute("style1", "header-footer.css");
         model.addAttribute("style2", "movie-card.css");
         model.addAttribute("style3", "upcomingMovies.css");
-        return "home";
+        model.addAttribute("pageTitle", "Home");
+        model.addAttribute("bodyContent", "home");
+        return "master-template";
     }
 
     @GetMapping("/about-us")
-    public String getAboutUsPage(){
-        return "about-us";
+    public String getAboutUsPage(Model model){
+        model.addAttribute("style1", "header-footer.css");
+        model.addAttribute("pageTitle", "About Us");
+        model.addAttribute("bodyContent", "about-us");
+        return "master-template";
     }
 }

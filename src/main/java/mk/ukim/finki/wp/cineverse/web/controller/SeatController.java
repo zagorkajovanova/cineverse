@@ -27,7 +27,9 @@ public class SeatController {
         model.addAttribute("style1", "seats.css");
         model.addAttribute("style2", "header-footer.css");
         model.addAttribute("script1","chooseSeats.js");
-        return "seats";
+        model.addAttribute("pageTitle", "Seats");
+        model.addAttribute("bodyContent", "seats");
+        return "master-template";
     }
 
     @PostMapping("/chooseSeats")

@@ -1,172 +1,74 @@
-<!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <title>Cineverse - Home</title>
-    <link rel="stylesheet" th:href="@{'~/css/{style}' (style=${style1})}">
-    <link rel="stylesheet" th:href="@{'~/css/{style}' (style=${style2})}">
-    <link rel="stylesheet" th:href="@{'~/css/{style}' (style=${style3})}">
-
-</head>
-<body>
-<!--    header-->
-<header class="navigation">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse justify-content-center" id="navbarNav" >
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/movies">Movies</a>
-                </li>
-            </ul>
-            <div>
-                <a class="navbar-brand" href="/home">
-                    <img class="logo" src="img/logo1.png" alt="Logo" style="max-width: 300px;">
-                </a>
-            </div>
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="/about-us">About Us</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Login</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-</header>
-<!--    end of header-->
-
-<!--    upcoming movies carousel-->
-<div class="upcomingMoviesCarousel">
-    <div id="carouselHomePage" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-            <li data-target="#carouselHomePage" data-slide-to="0" class="active"></li>
-            <li data-target="#carouselHomePage" data-slide-to="1"></li>
-            <li data-target="#carouselHomePage" data-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner" id="carouselVideos">
-            <div class="carousel-item active">
-                <div class="row">
-                    <video class="video-fluid d-block w-100" autoplay loop muted>
-                        <source src="video/shazam_cut.mp4" type="video/mp4"/>
-                    </video>
-                    <div class="overlay">
-                        <p class="display-4 p-over-video pl-4 movieTitle" style="font-family: Perpetua,serif;">Shazam</p>
+<div xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+    <!--    upcoming movies carousel-->
+    <div class="upcomingMoviesCarousel">
+        <div id="carouselHomePage" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselHomePage" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselHomePage" data-slide-to="1"></li>
+                <li data-target="#carouselHomePage" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner" id="carouselVideos">
+                <div class="carousel-item active">
+                    <div class="row">
+                        <video class="video-fluid d-block w-100" autoplay loop muted>
+                            <source src="video/shazam_cut.mp4" type="video/mp4"/>
+                        </video>
+                        <div class="overlay">
+                            <p class="display-4 p-over-video pl-4 movieTitle" style="font-family: Perpetua,serif;">Shazam</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="row">
+                        <video class="video-fluid d-block w-100" autoplay loop muted>
+                            <source src="video/godzila_cut.mp4" type="video/mp4"/>
+                        </video>
+                        <div class="overlay">
+                            <p class="display-4 p-over-video pl-4 movieTitle" style="font-family: Perpetua,serif;">Godzilla vs Kong</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="row">
+                        <video class="video-fluid d-block w-100" autoplay loop muted>
+                            <source src="video/baby_boss_cut.mp4" type="video/mp4"/>
+                        </video>
+                        <div class="overlay">
+                            <p class="display-4 p-over-video pl-4 movieTitle" style="font-family: Perpetua,serif;">The Baby Boss</p>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="carousel-item">
-                <div class="row">
-                    <video class="video-fluid d-block w-100" autoplay loop muted>
-                        <source src="video/godzila_cut.mp4" type="video/mp4"/>
-                    </video>
-                    <div class="overlay">
-                        <p class="display-4 p-over-video pl-4 movieTitle" style="font-family: Perpetua,serif;">Godzilla vs Kong</p>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="row">
-                    <video class="video-fluid d-block w-100" autoplay loop muted>
-                        <source src="video/baby_boss_cut.mp4" type="video/mp4"/>
-                    </video>
-                    <div class="overlay">
-                        <p class="display-4 p-over-video pl-4 movieTitle" style="font-family: Perpetua,serif;">The Baby Boss</p>
-                    </div>
-                </div>
-            </div>
+            <a class="carousel-control-prev" href="#carouselHomePage" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselHomePage" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
         </div>
-        <a class="carousel-control-prev" href="#carouselHomePage" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselHomePage" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
     </div>
-</div>
-<br/><br/>
+    <br/><br/>
 
-<!--    top movies -->
-<div class="container">
-    <h3 class='text-center top'>
-        <span class="topMoviesHeader" style="font-family: Perpetua,serif;">T O P</span>
-        <span><img src="/img/arrow.png" style="width: 30px"></span>
-        <span class="topMoviesHeader" style="font-family: Perpetua,serif;">M O V I E S</span>
-    </h3>
-</div>
+    <!--    top movies -->
+    <div class="container">
+        <h3 class='text-center top'>
+            <span class="topMoviesHeader" style="font-family: Perpetua,serif;">T O P</span>
+            <span><img src="/img/arrow.png" style="width: 30px"></span>
+            <span class="topMoviesHeader" style="font-family: Perpetua,serif;">M O V I E S</span>
+        </h3>
+    </div>
 
-<div id="top_movies" class="d-flex justify-content-between">
-    <div class="card movie_card" th:each="movie : ${topMovies}">
-        <a th:href="'/movie/' + ${movie.getMovieId()}">
-                            <img th:src="${movie.getPoster().getImageUrl()}" class="card-img-top" alt="...">
-        </a>
+    <div id="top_movies" class="d-flex justify-content-between">
+        <div class="card movie_card" th:each="movie : ${topMovies}">
+            <a th:href="'/movie/' + ${movie.getMovieId()}">
+                                <img th:src="${movie.getPoster().getImageUrl()}" class="card-img-top" alt="...">
+            </a>
+        </div>
     </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-<!--    footer-->
-<footer>
-    <div class="row mb-0 mt-5 mx-4 row-2 justify-content-xl-around justify-content-sm-between">
-        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 pt-2 order-1">
-            <div style="height: 150px; margin-top: -75px" class="movieDesc">
-                <img src="/img/logo1.png" style="width: 250px">
-            </div><hr>
-            <p style="text-align: justify">Enjoy your online ticket booking for your favorite movies. New movies every week.<br/>
-                You have a movie suggestion? Let us know at out offical email!</p>
-            <div id="social" class="text-center">
-                <a href="#"><img src="/img/facebook-logo.png" style="width: 30px; padding-right: 5px"></a>
-                <a href="#"><img src="/img/instagram.png" style="width: 30px; padding-right: 5px"></a>
-                <a href="#"><img src="/img/twitter.png" style="width: 30px; padding-right: 5px"></a>
-                <a href="#"><img src="/img/linkedin.png" style="width: 30px; padding-right: 5px"></a>
-                <a href="#"><img src="/img/whatsapp.png" style="width: 30px; padding-right: 5px"></a>
-            </div>
-        </div>
-        <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 pt-4 order-2 mr-3">
-            <ul class="list-unstyled">
-                <li class="mt-md-0 mt-4">Helpful Links</li>
-                <li><a href="/home">Home</a></li>
-                <li><a href="/movies">Movies</a></li>
-                <li><a href="/about-us">About Us</a></li>
-                <li>Login</li>
-            </ul>
-        </div>
-        <div class="col-xl-auto col-lg-6 col-md-6 pt-4 col-sm-6 my-sm-0 order-md-4 order-sm-3 d-flex" style="margin-left: -300px">
-            <ul class="list-unstyled">
-                <li class="mt-md-0 mt-4">Contact Us</li>
-                <img src="/img/email.png" style="width: 20px">
-                <li style="display: inline-block">cineverse@contact.com</li><br/>
-                <img src="/img/email.png" style="width: 20px">
-                <li style="display: inline-block">jovanovazagorka@outlook.com</li><br/>
-                <img src="/img/telephone.png" style="width: 20px">
-                <li style="display: inline-block">+ 01 234 567 88</li><br/>
-                <img src="/img/telephone.png" style="width: 20px">
-                <li style="display: inline-block">+ 01 234 567 89</li>
-            </ul>
-        </div>
-    </div>
-    <hr class="line">
-    <div class="row text-center py-3">
-        <div class="col">
-            <p class="text-muted copyright"><b>© 2022 Cineverse</b> </p>
-        </div>
-    </div>
-</footer>
-<!--    end of footer-->
 
-</body>
-</html>
+

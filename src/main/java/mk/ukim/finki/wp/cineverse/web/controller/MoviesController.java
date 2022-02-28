@@ -52,20 +52,22 @@ public class MoviesController {
         model.addAttribute("actionMovies", actionMovies);
         model.addAttribute("horrorMovies", horrorMovies);
         model.addAttribute("romanceMovies", romanceMovies);
+        model.addAttribute("pageTitle", "Movies");
 
         model.addAttribute("style1", "header-footer.css");
         model.addAttribute("style2", "movies-page-title.css");
         model.addAttribute("style3", "movies-carousel.css");
-        return "movies";
+        model.addAttribute("bodyContent", "movies");
+        return "master-template";
     }
 
     @GetMapping("/add-movie")
     public String getAddMoviePage(Model model){
-        //TODO: create add-movie page
-
         model.addAttribute("style1", "header-footer.css");
         model.addAttribute("style2", "add-movie.css");
-        return "add-movie";
+
+        model.addAttribute("bodyContent", "add-movie");
+        return "master-template";
     }
 
     //TODO: implement PostMapping for add movie
