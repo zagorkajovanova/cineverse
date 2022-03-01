@@ -40,7 +40,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Optional<User> register(String username, String password, String repeatPassword, String name, String surname, LocalDate birthDate,
-                                   String address, String email, String avatarURL, Role role) {
+                                   String address, String email, Role role) {
         if(username==null || username.isEmpty() || password==null || password.isEmpty()) {
             throw new InvalidUsernameOrPasswordException();
         }
@@ -53,30 +53,24 @@ public class UserServiceImpl implements UserService {
             throw new UsernameAlreadyExistsException(username);
         }
 
-        if(avatarURL==null || avatarURL.isEmpty()){
-            avatarURL = "";
-        }
+
 
         User user = new User(username, this.passwordEncoder.encode(password), name, surname, birthDate,
-                address, email, avatarURL, role);
+                address, email, role);
         return Optional.of(this.userRepository.save(user));
     }
 
     @Override
     public User update(Long userId, String username, String name, String surname, LocalDate birthDate,
-                       String address, String avatarURL) {
+                       String address) {
         User user = this.userRepository.findById(userId).orElseThrow(() -> new InvalidUserException(userId));
 
-        if(avatarURL==null || avatarURL.isEmpty()){
-            avatarURL = user.getAvatarURL();
-        }
 
         user.setUsername(username);
         user.setName(name);
         user.setSurname(surname);
         user.setBirthDate(birthDate);
         user.setAddress(address);
-        user.setAvatarURL(avatarURL);
         return this.userRepository.save(user);
     }
 

@@ -24,8 +24,8 @@ public class SeatController {
 
         model.addAttribute("movie", movie);
 
-        model.addAttribute("style1", "seats.css");
-        model.addAttribute("style2", "header-footer.css");
+        model.addAttribute("style1", "seats-page.css");
+        model.addAttribute("style2", "header-and-footer.css");
         model.addAttribute("script1","chooseSeats.js");
         model.addAttribute("pageTitle", "Seats");
         model.addAttribute("bodyContent", "seats");

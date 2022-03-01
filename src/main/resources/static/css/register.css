@@ -1,0 +1,29 @@
+body {
+    width: 100%;
+    height: auto;
+    background-size: cover;
+    background-position: center;
+}
+
+.container .registerCard {
+    height: auto;
+    width: 1000px;
+    background: #e6e6ea;
+    /* DON'T UNCOMMENT
+          display: flex;
+          justify-content: center;
+          flex-direction: column; */
+    padding: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 5px;
+}
+.btn-facebook {
+    background: #405D9D;
+    border: none;
+}
+.btn-google{
+    background-color: green;
+}
+

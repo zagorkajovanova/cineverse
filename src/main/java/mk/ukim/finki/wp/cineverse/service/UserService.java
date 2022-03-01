@@ -11,9 +11,9 @@ public interface UserService {
     User findById(Long userId);
     Optional<User> findByUsername(String username);
     Optional<User> register(String username, String password, String repeatPassword, String name, String surname, LocalDate birthDate,
-                            String address, String email, String avatarURL, Role role);
+                            String address, String email, Role role);
     User update(Long userId, String username, String name, String surname, LocalDate birthDate,
-                String address, String avatarURL);
+                String address);
     Optional<Movie> addToFavoriteMovies(User user, Movie movie);
     Optional<Movie> removeFromFavoriteMovies(User user, Movie movie);
 }

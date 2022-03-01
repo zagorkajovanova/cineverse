@@ -40,25 +40,27 @@ small {
     left: -10px
 }
 
-.btn {
-    background-color: #42443E !important
-}
-
-.fa {
-    background-color: #42443E !important;
-    padding: calc(6px + (8 - 6) * ((100vw - 360px) / (1600 - 360))) !important;
-    font-size: calc(14px + (15 - 14) * ((100vw - 360px) / (1600 - 360))) !important;
-    width: calc(23px + (30 - 23) * ((100vw - 360px) / (1600 - 360))) !important;
-    text-align: center;
-    text-decoration: none;
-    border-radius: 0px !important;
-    margin: 5px 10px 5px 10px !important;
-    cursor: pointer;
-    color: #fff !important
-}
+/*.fa {*/
+/*    background-color: #42443E;*/
+/*    padding: calc(6px + (8 - 6) * ((100vw - 360px) / (1600 - 360)));*/
+/*    font-size: calc(14px + (15 - 14) * ((100vw - 360px) / (1600 - 360)));*/
+/*    width: calc(23px + (30 - 23) * ((100vw - 360px) / (1600 - 360)));*/
+/*    text-align: center;*/
+/*    text-decoration: none;*/
+/*    border-radius: 0px;*/
+/*    margin: 5px 10px 5px 10px;*/
+/*    cursor: pointer;*/
+/*    color: #fff;*/
+/*}*/
 
 a {
-    text-decoration: none !important
+    text-decoration: none !important;
+}
+a:visited{
+    color: #5e5c5c;
+}
+a:hover{
+    color: darkslategrey;
 }
 
 .line {

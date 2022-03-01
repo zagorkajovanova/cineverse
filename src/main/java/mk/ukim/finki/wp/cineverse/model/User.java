@@ -24,7 +24,6 @@ public class User {
     private LocalDate birthDate;
     private String address;
     private String email;
-    private String avatarURL;
 
     @Enumerated(EnumType.STRING)
     private Role role;
@@ -40,7 +39,7 @@ public class User {
     }
 
     public User(String username, String password, String name, String surname, LocalDate birthDate,
-                String address, String email, String avatarURL, Role role) {
+                String address, String email, Role role) {
         this.username = username;
         this.password = password;
         this.name = name;
@@ -48,16 +47,10 @@ public class User {
         this.birthDate = birthDate;
         this.address = address;
         this.email = email;
-        this.avatarURL = avatarURL;
         this.role = role;
         this.favoriteMovies = new ArrayList<>();
         this.tickets = new ArrayList<>();
 
-        if(avatarURL!=null && !avatarURL.isEmpty()) {
-            this.avatarURL = avatarURL;
-        }else{
-            this.avatarURL = "/img/user.png";
-        }
     }
 
 }

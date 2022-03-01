@@ -24,7 +24,7 @@ public class HomeController {
         List<Movie> topMovies = this.movieService.getLatestMovies();
         model.addAttribute("topMovies", topMovies);
 
-        model.addAttribute("style1", "header-footer.css");
+        model.addAttribute("style1", "header-and-footer.css");
         model.addAttribute("style2", "movie-card.css");
         model.addAttribute("style3", "upcomingMovies.css");
         model.addAttribute("pageTitle", "Home");
@@ -34,7 +34,7 @@ public class HomeController {
 
     @GetMapping("/about-us")
     public String getAboutUsPage(Model model){
-        model.addAttribute("style1", "header-footer.css");
+        model.addAttribute("style1", "header-and-footer.css");
         model.addAttribute("pageTitle", "About Us");
         model.addAttribute("bodyContent", "about-us");
         return "master-template";

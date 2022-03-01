@@ -9,11 +9,12 @@
                             <div class="form-group">
                                 <label>Movie title</label>
                                 <select class="form-control" name="id" required>
+                                    <option>Choose movie</option>
                                     <option th:each="movie: ${movies}" th:text="${movie.getTitle()}" th:value="${movie.getMovieId()}"></option>
                                 </select>
                             </div>
 
-                            <br/><button class="btn btn-block">Remove</button>
+                            <br/><button class="btn btn-block btn-dark" style="color: white">Remove</button>
                         </form>
                     </div>
                 </div>
