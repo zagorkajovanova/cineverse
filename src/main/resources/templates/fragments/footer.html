@@ -1,4 +1,4 @@
-<footer class="text-center text-lg-start text-muted">
+<footer class="text-center text-lg-start text-muted" xmlns:sec="http://www.w3.org/1999/xhtml">
     <!-- Section: Links  -->
     <section class="">
         <div class="container text-center text-md-start mt-5">
@@ -30,6 +30,9 @@
                     <h6 class="text-uppercase fw-bold mb-4">
                         Profile
                     </h6>
+                    <p sec:authorize="isAuthenticated()">
+                        <a href="#" class="text-reset">Dashboard</a>
+                    </p>
                     <p>
                         <a href="/register" class="text-reset">Register</a>
                     </p>
