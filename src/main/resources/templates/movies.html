@@ -98,11 +98,11 @@
         </div>
     </div>
 
-    <div class="container text-right" id="removeMovieButton">
+    <div class="container text-right" id="removeMovieButton" sec:authorize="hasRole('ROLE_ADMIN')">
         <a href="/remove" class="btn btn-dark" style="color: white">Remove movie</a>
     </div>
 
-    <div class="container text-right" id="addMovieButton">
+    <div class="container text-right" id="addMovieButton" sec:authorize="hasRole('ROLE_ADMIN')">
         <a href="/movies/add-movie" class="btn btn-dark" style="color: white">Add new movie</a>
     </div>
 

@@ -12,7 +12,7 @@
 
             <!-- Registeration Form -->
             <div class="col-md-7 col-lg-6 ml-auto">
-                <form action="#">
+                <form action="/register" method="POST">
                     <div class="row">
 
                         <!-- First Name -->
@@ -74,8 +74,8 @@
                             </div>
                             <select id="role" name="role" class="form-control custom-select bg-white border-left-0 border-md">
                                 <option>Role</option>
-                                <option value="">User</option>
-                                <option value="">Admin</option>
+                                <option value="User">User</option>
+                                <option value="Admin">Admin</option>
                             </select>
                         </div>
 
@@ -107,14 +107,13 @@
                                     <i class="fa fa-lock text-muted"></i>
                                 </span>
                             </div>
-                            <input id="passwordConfirmation" type="password" name="passwordConfirmation" placeholder="Confirm Password" class="form-control bg-white border-left-0 border-md">
+                            <input id="passwordConfirmation" type="password" name="repeatPassword" placeholder="Confirm Password" class="form-control bg-white border-left-0 border-md">
                         </div>
 
                         <!-- Submit Button -->
                         <div class="form-group col-lg-12 mx-auto mb-0">
-                            <a href="#" class="btn btn-primary btn-block py-2">
-                                <span class="font-weight-bold" style="color: white">Register</span>
-                            </a>
+                            <button type="submit" class="btn-primary btn-block py-2">Register</span>
+                            </button>
                         </div>
 
                         <!-- Divider Text -->

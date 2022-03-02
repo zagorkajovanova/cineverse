@@ -3,13 +3,12 @@ package mk.ukim.finki.wp.cineverse.service.impl;
 import mk.ukim.finki.wp.cineverse.model.Movie;
 import mk.ukim.finki.wp.cineverse.model.User;
 import mk.ukim.finki.wp.cineverse.model.enums.Role;
-import mk.ukim.finki.wp.cineverse.model.exceptions.InvalidUserException;
-import mk.ukim.finki.wp.cineverse.model.exceptions.InvalidUsernameOrPasswordException;
-import mk.ukim.finki.wp.cineverse.model.exceptions.PasswordsDoNotMatchException;
-import mk.ukim.finki.wp.cineverse.model.exceptions.UsernameAlreadyExistsException;
+import mk.ukim.finki.wp.cineverse.model.exceptions.*;
 import mk.ukim.finki.wp.cineverse.repository.ClientRepository;
 import mk.ukim.finki.wp.cineverse.repository.UserRepository;
 import mk.ukim.finki.wp.cineverse.service.UserService;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -39,7 +38,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Optional<User> register(String username, String password, String repeatPassword, String name, String surname, LocalDate birthDate,
+    public Optional<User> register(String username, String password, String repeatPassword, String name, String surname, String birthDate,
                                    String address, String email, Role role) {
         if(username==null || username.isEmpty() || password==null || password.isEmpty()) {
             throw new InvalidUsernameOrPasswordException();
@@ -53,9 +52,9 @@ public class UserServiceImpl implements UserService {
             throw new UsernameAlreadyExistsException(username);
         }
 
+        LocalDate date = LocalDate.parse(birthDate);
 
-
-        User user = new User(username, this.passwordEncoder.encode(password), name, surname, birthDate,
+        User user = new User(username, this.passwordEncoder.encode(password), name, surname, date,
                 address, email, role);
         return Optional.of(this.userRepository.save(user));
     }
@@ -92,5 +91,20 @@ public class UserServiceImpl implements UserService {
         user.setFavoriteMovies(favoriteMovies);
         this.userRepository.save(user);
         return Optional.of(movie);
+    }
+
+    @Override
+    public User login(String username, String password) {
+        if (username==null || username.isEmpty() || password==null || password.isEmpty()) {
+            throw new InvalidUsernameOrPasswordException();
+        }
+        return userRepository.findByUsernameAndPassword(username,
+                password).orElseThrow(InvalidUserCredentialsException::new);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return userRepository.findByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException(username));
     }
 }
