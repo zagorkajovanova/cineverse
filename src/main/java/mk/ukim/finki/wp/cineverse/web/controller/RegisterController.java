@@ -50,7 +50,7 @@ public class RegisterController {
         }
 
         try{
-            this.userService.register(username,password,repeatPassword,firstname,lastname,birthday,address,email,role1);
+            this.userService.register(username,password,repeatPassword,firstname,lastname,birthday,address,email,role1,"");
             return "redirect:/login";
         } catch (InvalidArgumentsException | PasswordsDoNotMatchException exception) {
             return "redirect:/register?error=" + exception.getMessage();

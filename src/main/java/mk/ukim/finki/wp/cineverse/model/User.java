@@ -28,6 +28,8 @@ public class User implements UserDetails {
     private LocalDate birthDate;
     private String address;
     private String email;
+    private String avatarUrl;
+
 
     @Enumerated(EnumType.STRING)
     private Role role;
@@ -48,7 +50,7 @@ public class User implements UserDetails {
     }
 
     public User(String username, String password, String name, String surname, LocalDate birthDate,
-                String address, String email, Role role) {
+                String address, String email, Role role, String avatarUrl) {
         this.username = username;
         this.password = password;
         this.name = name;
@@ -60,6 +62,11 @@ public class User implements UserDetails {
         this.favoriteMovies = new ArrayList<>();
         this.tickets = new ArrayList<>();
 
+        if(avatarUrl!=null && !avatarUrl.isEmpty()) {
+            this.avatarUrl = avatarUrl;
+        }else{
+            this.avatarUrl = "/img/user-avatar.png";
+        }
     }
 
     @Override

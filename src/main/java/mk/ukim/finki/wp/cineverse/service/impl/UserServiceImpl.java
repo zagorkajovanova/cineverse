@@ -33,13 +33,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Optional<User> findByUsername(String username) {
-        return this.userRepository.findByUsername(username);
+    public User findByUsername(String username) {
+        return this.userRepository.findByUsername(username).orElseThrow(() ->new UsernameNotFoundException(username));
     }
 
     @Override
     public Optional<User> register(String username, String password, String repeatPassword, String name, String surname, String birthDate,
-                                   String address, String email, Role role) {
+                                   String address, String email, Role role, String avatarURL) {
+        if(avatarURL==null || avatarURL.isEmpty()){
+            avatarURL = "";
+        }
+
         if(username==null || username.isEmpty() || password==null || password.isEmpty()) {
             throw new InvalidUsernameOrPasswordException();
         }
@@ -55,21 +59,28 @@ public class UserServiceImpl implements UserService {
         LocalDate date = LocalDate.parse(birthDate);
 
         User user = new User(username, this.passwordEncoder.encode(password), name, surname, date,
-                address, email, role);
+                address, email, role, "");
         return Optional.of(this.userRepository.save(user));
     }
 
     @Override
-    public User update(Long userId, String username, String name, String surname, LocalDate birthDate,
-                       String address) {
-        User user = this.userRepository.findById(userId).orElseThrow(() -> new InvalidUserException(userId));
+    public User update(Long userId, String username, String name, String surname, String email, String birthDate,
+                       String address, String avatarUrl) {
 
+        User user = this.userRepository.findById(userId).orElseThrow(() -> new InvalidUserException(userId));
+        if(avatarUrl.equals("")){
+            avatarUrl = user.getAvatarUrl();
+        }
+
+        LocalDate date = LocalDate.parse(birthDate);
 
         user.setUsername(username);
         user.setName(name);
         user.setSurname(surname);
-        user.setBirthDate(birthDate);
+        user.setEmail(email);
+        user.setBirthDate(date);
         user.setAddress(address);
+        user.setAvatarUrl(avatarUrl);
         return this.userRepository.save(user);
     }
 
