@@ -20,15 +20,17 @@ public class Ticket {
     //Booked seats
     private Integer numberOfSeats;
     //Calculated price of the ticket
-    private Long price;
+    private Float price;
 
     public Ticket() {
 
     }
 
-    public Ticket(User user, Movie movie, Integer numberOfSeats) {
+    public Ticket(User user, Movie movie, Integer numberOfSeats, Float price) {
         this.user = user;
         this.movie = movie;
         this.numberOfSeats = numberOfSeats;
+        this.price = price;
+
     }
 }

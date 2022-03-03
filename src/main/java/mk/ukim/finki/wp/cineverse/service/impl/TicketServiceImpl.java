@@ -35,8 +35,8 @@ public class TicketServiceImpl implements TicketService {
     }
 
     @Override
-    public Ticket create(User user, Movie movie, Integer numberOfSeats) {
-        Ticket ticket = new Ticket(user,movie,numberOfSeats);
+    public Ticket create(User user, Movie movie, Integer numberOfSeats, Float price) {
+        Ticket ticket = new Ticket(user,movie,numberOfSeats, price);
         return this.ticketRepository.save(ticket);
     }
 

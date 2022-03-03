@@ -11,6 +11,6 @@ public interface TicketService {
     List<Ticket> listAllTicketsByUser(User user);
     List<Ticket> listAll();
     Optional<Ticket> findById(Long id);
-    Ticket create(User client, Movie movie, Integer numberOfSeats);
+    Ticket create(User client, Movie movie, Integer numberOfSeats, Float price);
     void deleteTicketById(Long id);
 }

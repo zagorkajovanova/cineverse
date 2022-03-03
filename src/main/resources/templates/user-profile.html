@@ -148,11 +148,11 @@
                                              class="list-group-item list-group-item-action"
                                              aria-current="true">
                                             <div class="d-flex w-100 justify-content-between">
-                                                <h6 class="mb-1" th:text="'Ticket:'+${ticket.getTicketId()} + ', ' + ${ticket.getMovie()}"></h6>
-                                                <a href="#">
-                                                    class="btn btn-outline-danger btn-sm">
-                                                    Отстрани
-                                                </a>
+                                                <h6 class="mb-1" th:text="'Ticket '+${ticket.getTicketId()} + ': ' + ${ticket.getMovie().getTitle()}">
+                                                    <a href="#" class="btn btn-outline-danger btn-sm">
+                                                        <i class="fa fa-xmark"></i>
+                                                    </a>
+                                                </h6>
                                             </div>
                                         </div>
 

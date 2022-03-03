@@ -27,7 +27,7 @@ public class Movie {
     private String director;
     private String writer;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Actor> actors;
 
     public Movie() {

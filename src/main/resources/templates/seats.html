@@ -1,4 +1,4 @@
-<div class="container justify-content-center">
+<div class="container justify-content-center" xmlns:th="http://www.w3.org/1999/xhtml">
 
     <div class="movie_card pt-4 pb-4" id="bright">
         <div class="row justify-content-center mt-4">
@@ -78,7 +78,8 @@
     </div>
 
     <div class="container">
-        <form class="form-inline justify-content-center" action="/chooseSeats" method="POST">
+        <form class="form-inline justify-content-center"
+              th:action="@{'/{movieId}/seats/{username}' (movieId=${movie.getMovieId()}, username=${#request.getRemoteUser()})}" method="POST">
             <div class="form-group row">
                     <label class="inputLabel" for="seats" style="letter-spacing: 2px;">Number of seats: </label>
                     <input class="form-control col-xs-2" type="text" id="seats" name="numSeats" style="border-radius: 10px">
