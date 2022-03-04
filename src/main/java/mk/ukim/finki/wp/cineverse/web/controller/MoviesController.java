@@ -65,12 +65,12 @@ public class MoviesController {
     public String getAddMoviePage(Model model){
         model.addAttribute("style1", "header-and-footer.css");
         model.addAttribute("style2", "add-movie.css");
+        model.addAttribute("pageTitle", "Add movie");
 
         model.addAttribute("bodyContent", "add-movie");
         return "master-template";
     }
 
-    //TODO: implement PostMapping for add movie
     @PostMapping("/add")
     public String saveMovie(@RequestParam String title,
                             @RequestParam String genre,
@@ -78,7 +78,6 @@ public class MoviesController {
                             @RequestParam String writer,
                             @RequestParam String date,
                             @RequestParam String duration,
-                            @RequestParam String actors,
                             @RequestParam String price,
                             @RequestParam String trailerUrl,
                             @RequestParam MultipartFile posterUrl,

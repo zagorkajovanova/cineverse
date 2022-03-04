@@ -1,16 +1,45 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<div>
-    <p th:text="${movie.getTitle()}"></p>
-    <p th:text="${user.getUsername()}"></p>
-    <p th:text="${seats}"></p>
-    <p th:text="${price}"></p>
+<div xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+    <div class="container m-5 mx-auto">
+            <div class="row main">
+                <div class="col-lg-6 col-12 my-5 rcol">
+                    <h3 class="text-muted text-center">SUMMARY</h3>
+                    <div class="image text-center"><img th:src="${movie.getPoster().getImageUrl()}" width="250px" height="350px"></div>
+                    <p class="text-center my-3">
+                        <span class="text-muted" style="letter-spacing: 2px">MOVIE TITLE</span><br/>
+                        <th:block th:text="${movie.getTitle()}"></th:block><br/>
+                        <span class="text-muted" style="letter-spacing: 2px">DIRECTED BY</span><br/>
+                        <th:block th:text="${movie.getDirector()}"></th:block>
+                    </p>
+                </div>
+                <div class="col-lg-6 col-12 my-5">
+                        <div class="row-xl-6">
+                            <h6 class="mb-2 text-muted" style="font-weight: bold">Ticket booked by:</h6><hr/>
+                            <p th:text="${user.getName()} + ' ' + ${user.getSurname()}"></p>
+                        </div>
 
+                        <div class="row-xl-6">
+                            <h6 class="mb-2 text-muted" style="font-weight: bold">Date</h6><hr/>
+                            <p th:text="${movie.getShowtime()}"></p>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <h6 class="mb-2 text-muted" style="font-weight: bold">Number of seats</h6><hr/>
+                                <p th:text="${seats}"></p>
+                            </div>
+                            <div class="col">
+                                <h6 class="mb-2 text-muted" style="font-weight: bold">Price</h6><hr/>
+                                <p th:text="'$'+${movie.getTicketPrice()}"></p>
+                            </div>
+                        </div>
+                        <div class="row-xl-6">
+                            <h6 class="mb-2 text-muted" style="font-weight: bold">Total</h6><hr/>
+                            <p th:text="'$'+${price}"></p>
+                        </div>
+
+                        <a href="/movies" class="btn btn-outline-danger mt-3">Cancel</a>
+                        <a th:href="'/summary/' + ${user.getUsername()} + '/' + ${movie.getMovieId()} + '/' + ${seats} + '/confirm'" class="btn btn-outline-info mt-3">Confirm</a>
+                </div>
+            </div>
+    </div>
 </div>
-</body>
-</html>

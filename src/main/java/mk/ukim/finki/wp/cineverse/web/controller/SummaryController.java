@@ -4,12 +4,11 @@ import mk.ukim.finki.wp.cineverse.model.Movie;
 import mk.ukim.finki.wp.cineverse.model.User;
 import mk.ukim.finki.wp.cineverse.model.exceptions.MovieNotFoundException;
 import mk.ukim.finki.wp.cineverse.service.MovieService;
+import mk.ukim.finki.wp.cineverse.service.TicketService;
 import mk.ukim.finki.wp.cineverse.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/summary")
@@ -17,10 +16,12 @@ public class SummaryController {
 
     private final UserService userService;
     private final MovieService movieService;
+    private final TicketService ticketService;
 
-    public SummaryController(UserService userService, MovieService movieService) {
+    public SummaryController(UserService userService, MovieService movieService, TicketService ticketService) {
         this.userService = userService;
         this.movieService = movieService;
+        this.ticketService = ticketService;
     }
 
     @GetMapping("/{username}/{movieId}/{numSeats}")
@@ -36,9 +37,24 @@ public class SummaryController {
         model.addAttribute("seats", seats);
         model.addAttribute("price", seats*movie.getTicketPrice());
 
-        return "summary";
+        model.addAttribute("style1","header-and-footer.css");
+        model.addAttribute("style2", "summary.css");
+        model.addAttribute("pageTitle", "Summary");
+        model.addAttribute("bodyContent", "summary");
+        return "master-template";
     }
 
-    //TODO: PostMapping
-    //this.ticketService.create(user,movie,num,(num*movie.getTicketPrice()));
+    @GetMapping("/{username}/{movieId}/{numSeats}/confirm")
+    private String confirmTicket(@PathVariable String username,
+                                 @PathVariable String movieId,
+                                 @PathVariable String numSeats){
+        Integer num = Integer.parseInt(numSeats);
+        Long id = Long.parseLong(movieId);
+        User user = this.userService.findByUsername(username);
+        Movie movie = this.movieService.findById(id).orElseThrow(() -> new MovieNotFoundException(id));
+        this.ticketService.create(user,movie,num,(num*movie.getTicketPrice()));
+
+        return "redirect:/profile/user/" + username;
+    }
+
 }

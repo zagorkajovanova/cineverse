@@ -15,6 +15,7 @@
                                         <th:block th:text="${user.getName()}"></th:block>
                                         <th:block th:text="${user.getSurname()}"></th:block>
                                     </h3>
+                                    <p class="text-muted" th:text="${role}"></p>
                                     <p class="text-muted" th:text="${user.getEmail()}"></p>
                                 </div>
                             </div>
@@ -148,11 +149,10 @@
                                              class="list-group-item list-group-item-action"
                                              aria-current="true">
                                             <div class="d-flex w-100 justify-content-between">
-                                                <h6 class="mb-1" th:text="'Ticket '+${ticket.getTicketId()} + ': ' + ${ticket.getMovie().getTitle()}">
-                                                    <a href="#" class="btn btn-outline-danger btn-sm">
-                                                        <i class="fa fa-xmark"></i>
-                                                    </a>
-                                                </h6>
+                                                <h6 class="mb-1" th:text="'Ticket id: '+${ticket.getTicketId()} + ' - ' + ${ticket.getMovie().getTitle()}"></h6>
+                                                <a th:href="'/profile/' + ${user.getUsername()} + '/delete/' + ${ticket.getTicketId()}">
+                                                    <i style="width: 20px; color: gray" class="fa fa-minus"></i>
+                                                </a>
                                             </div>
                                         </div>
 

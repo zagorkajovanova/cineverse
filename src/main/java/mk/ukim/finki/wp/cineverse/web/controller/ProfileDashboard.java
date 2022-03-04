@@ -38,14 +38,20 @@ public class ProfileDashboard {
         }
         List<Ticket> tickets = this.ticketService.listAllTicketsByUser(user);
 
+        String role;
+        if(user.getRole().toString().equals("ROLE_USER")){
+            role = "User";
+        }else{
+            role = "Admin";
+        }
+
         model.addAttribute("style1", "header-and-footer.css");
         model.addAttribute("style2", "profile.css");
         model.addAttribute("bodyContent", "user-profile");
         model.addAttribute("pageTitle", "Profile");
         model.addAttribute("tickets", tickets);
         model.addAttribute("user", user);
-        model.addAttribute("roleUser", Role.ROLE_USER);
-
+        model.addAttribute("role", role);
         return "master-template";
     }
 
@@ -67,6 +73,13 @@ public class ProfileDashboard {
             this.userService.update(id, username, name, surname, email, birthDate, address, "");
         }
 
+        return "redirect:/profile/user/" + username;
+    }
+
+    @GetMapping("/{username}/delete/{id}")
+    public String deleteTicket(@PathVariable String id, @PathVariable String username){
+        Long ticketId = Long.parseLong(id);
+        this.ticketService.deleteTicketById(ticketId);
         return "redirect:/profile/user/" + username;
     }
 }
