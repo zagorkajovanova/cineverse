@@ -24,12 +24,12 @@ public class SummaryController {
         this.ticketService = ticketService;
     }
 
-    @GetMapping("/{username}/{movieId}/{numSeats}")
-    private String getSummaryPage(Model model, @PathVariable String username,
+    @GetMapping("/{userId}/{movieId}/{numSeats}")
+    private String getSummaryPage(Model model, @PathVariable Long userId,
                                   @PathVariable String movieId, @PathVariable String numSeats){
         Long id = Long.parseLong(movieId);
         Movie movie = this.movieService.findById(id).orElseThrow(() -> new MovieNotFoundException(id));
-        User user = this.userService.findByUsername(username);
+        User user = this.userService.findById(userId);
         Integer seats = Integer.parseInt(numSeats);
 
         model.addAttribute("movie", movie);

@@ -1,9 +1,11 @@
 package mk.ukim.finki.wp.cineverse.web.controller;
 
+import mk.ukim.finki.wp.cineverse.model.Movie;
 import mk.ukim.finki.wp.cineverse.model.Ticket;
 import mk.ukim.finki.wp.cineverse.model.User;
-import mk.ukim.finki.wp.cineverse.model.enums.Role;
 import mk.ukim.finki.wp.cineverse.model.exceptions.ClientNotFoundException;
+import mk.ukim.finki.wp.cineverse.model.exceptions.MovieNotFoundException;
+import mk.ukim.finki.wp.cineverse.service.MovieService;
 import mk.ukim.finki.wp.cineverse.service.TicketService;
 import mk.ukim.finki.wp.cineverse.service.UserService;
 import mk.ukim.finki.wp.cineverse.service.impl.FileService;
@@ -21,11 +23,13 @@ public class ProfileDashboard {
     private final UserService userService;
     private final TicketService ticketService;
     private final FileService fileService;
+    private final MovieService movieService;
 
-    public ProfileDashboard(UserService userService, TicketService ticketService, FileService fileService) {
+    public ProfileDashboard(UserService userService, TicketService ticketService, FileService fileService, MovieService movieService) {
         this.userService = userService;
         this.ticketService = ticketService;
         this.fileService = fileService;
+        this.movieService = movieService;
     }
 
     @GetMapping("/user/{username}")
@@ -76,10 +80,20 @@ public class ProfileDashboard {
         return "redirect:/profile/user/" + username;
     }
 
-    @GetMapping("/{username}/delete/{id}")
-    public String deleteTicket(@PathVariable String id, @PathVariable String username){
-        Long ticketId = Long.parseLong(id);
-        this.ticketService.deleteTicketById(ticketId);
-        return "redirect:/profile/user/" + username;
+    @GetMapping("/{userId}/delete/{id}")
+    public String deleteTicket(@PathVariable Long id, @PathVariable Long userId){
+        this.ticketService.deleteTicketById(id);
+        User user = this.userService.findById(userId);
+        return "redirect:/profile/user/" + user.getUsername();
+    }
+
+    @GetMapping("/remove-favorite/{userId}/{movieId}")
+    public String removeFavorite(@PathVariable Long userId,
+                                 @PathVariable Long movieId){
+        Movie movie = this.movieService.findById(movieId).orElseThrow(() -> new MovieNotFoundException(movieId));
+        User user = this.userService.findById(userId);
+        this.userService.removeFromFavoriteMovies(user,movie);
+
+        return "redirect:/profile/user/" + user.getUsername();
     }
 }

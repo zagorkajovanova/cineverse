@@ -126,14 +126,11 @@
                                              aria-current="true">
                                             <div class="d-flex w-100 justify-content-between">
                                                 <h6 class="mb-1" th:text="${fave.getTitle()}"></h6>
-                                                <a th:href="@{'/dashboard/client/{id}/remove-fave/{movieId}' ( id=${user.userId}, movieId=${fave.movieId} ) }"
-                                                   class="btn btn-outline-danger btn-sm">
-                                                    Отстрани
+                                                <a th:href="'/profile/remove-favorite/' + ${user.getUserId()} + '/' + ${fave.getMovieId()}">
+                                                    <i style="width: 20px; color: gray" class="fa fa-minus"></i>
                                                 </a>
                                             </div>
-                                            <p class="mb-1" th:text="${fave.getTitle()}"></p>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
@@ -150,7 +147,7 @@
                                              aria-current="true">
                                             <div class="d-flex w-100 justify-content-between">
                                                 <h6 class="mb-1" th:text="'Ticket id: '+${ticket.getTicketId()} + ' - ' + ${ticket.getMovie().getTitle()}"></h6>
-                                                <a th:href="'/profile/' + ${user.getUsername()} + '/delete/' + ${ticket.getTicketId()}">
+                                                <a th:href="'/profile/' + ${user.getUserId()} + '/delete/' + ${ticket.getTicketId()}">
                                                     <i style="width: 20px; color: gray" class="fa fa-minus"></i>
                                                 </a>
                                             </div>

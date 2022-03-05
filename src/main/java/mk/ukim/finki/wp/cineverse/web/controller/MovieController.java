@@ -2,15 +2,19 @@ package mk.ukim.finki.wp.cineverse.web.controller;
 
 import mk.ukim.finki.wp.cineverse.model.Actor;
 import mk.ukim.finki.wp.cineverse.model.Movie;
+import mk.ukim.finki.wp.cineverse.model.User;
 import mk.ukim.finki.wp.cineverse.model.exceptions.MovieNotFoundException;
 import mk.ukim.finki.wp.cineverse.service.MovieService;
+import mk.ukim.finki.wp.cineverse.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/movie")
@@ -18,13 +22,15 @@ public class MovieController {
 
 
     private final MovieService movieService;
+    private final UserService userService;
 
-    public MovieController(MovieService movieService) {
+    public MovieController(MovieService movieService, UserService userService) {
         this.movieService = movieService;
+        this.userService = userService;
     }
 
     @GetMapping("/{id}")
-    public String getMoviePage(Model model, @PathVariable String id){
+    public String getMoviePage(Model model, @PathVariable String id, HttpServletRequest request){
         Long movieId = Long.parseLong(id);
         Movie movie = this.movieService.findById(movieId).orElseThrow(() -> new MovieNotFoundException(movieId));
         String [] pom = movie.getPoster().getImageUrl().split("\\.");
@@ -33,6 +39,12 @@ public class MovieController {
         List<Actor> actors = movie.getActors();
 
         String movieYear = pom1[pom1.length-1];
+
+        Optional<User> optionalUser = Optional.ofNullable(this.userService.findByUsername(request.getRemoteUser()));
+        if (optionalUser.isPresent())
+            model.addAttribute("user", optionalUser.get().getUserId());
+        else
+            model.addAttribute("user", "");
 
         model.addAttribute("movie", movie);
         model.addAttribute("movieYear", movieYear);
@@ -60,5 +72,15 @@ public class MovieController {
         return "master-template";
     }
 
-    //TODO: implement addToFavorites
+    @GetMapping("/add-favorite/{userId}/{movieId}")
+    public String addToFavorites(@PathVariable String movieId,
+                                 @PathVariable Long userId){
+        Long id = Long.parseLong(movieId);
+        Movie movie = this.movieService.findById(id).orElseThrow(() -> new MovieNotFoundException(id));
+        User user = this.userService.findById(userId);
+
+        this.userService.addToFavoriteMovies(user,movie);
+        return "redirect:/profile/user/" + user.getUsername();
+    }
+
 }

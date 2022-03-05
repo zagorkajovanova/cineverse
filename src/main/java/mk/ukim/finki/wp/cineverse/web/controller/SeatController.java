@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Optional;
 
 @Controller
 @RequestMapping
@@ -28,9 +29,15 @@ public class SeatController {
     }
 
     @GetMapping("movie/{id}/seats")
-    public String getSeatsPage(@PathVariable String id, Model model){
+    public String getSeatsPage(@PathVariable String id, Model model, HttpServletRequest request){
         Long movieId = Long.parseLong(id);
         Movie movie = this.movieService.findById(movieId).orElseThrow(() -> new MovieNotFoundException(movieId));
+
+        Optional<User> optionalUser = Optional.ofNullable(this.userService.findByUsername(request.getRemoteUser()));
+        if (optionalUser.isPresent())
+            model.addAttribute("user", optionalUser.get().getUserId());
+        else
+            model.addAttribute("user", "");
 
         model.addAttribute("movie", movie);
 
@@ -44,9 +51,8 @@ public class SeatController {
 
     @PostMapping("{movieId}/seats/{username}")
     public String getSeats(@RequestParam String numSeats, @PathVariable String username,
-                           @PathVariable String movieId, HttpServletRequest request){
-        Long id = Long.parseLong(movieId);
-        Movie movie = this.movieService.findById(id).orElseThrow(() -> new MovieNotFoundException(id));
+                           @PathVariable Long movieId, HttpServletRequest request){
+        Movie movie = this.movieService.findById(movieId).orElseThrow(() -> new MovieNotFoundException(movieId));
         Integer num = Integer.parseInt(numSeats);
         User user = this.userService.findByUsername(username);
 
@@ -55,6 +61,6 @@ public class SeatController {
         request.getSession().setAttribute("numSeats", num);
         request.getSession().setAttribute("movie", movie);
         request.getSession().setAttribute("price", num*movie.getTicketPrice());
-        return "redirect:/summary/"+ username + "/" +movieId+ "/" +numSeats;
+        return "redirect:/summary/"+ user.getUserId() + "/" +movieId+ "/" +numSeats;
     }
 }
