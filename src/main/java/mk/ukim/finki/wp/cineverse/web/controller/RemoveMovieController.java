@@ -2,6 +2,7 @@ package mk.ukim.finki.wp.cineverse.web.controller;
 
 import mk.ukim.finki.wp.cineverse.model.Movie;
 import mk.ukim.finki.wp.cineverse.service.MovieService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +19,7 @@ public class RemoveMovieController {
         this.movieService = movieService;
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping
     public String getRemoveMoviePage(Model model){
         List<Movie> movies = this.movieService.listAllMovies();

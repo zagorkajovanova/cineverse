@@ -2,6 +2,7 @@ package mk.ukim.finki.wp.cineverse.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -9,6 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final PasswordEncoder passwordEncoder;
@@ -23,10 +25,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/", "/home", "/about-us", "/movies", "/movie/{id}", "/movie/{id}/{trailer}", "/register", "/assets/**",
+                .antMatchers("/", "/home", "/about-us", "/movies", "/movie/{id}", "/movie/{id}/{trailer}", "/register", "/not-found", "/access-denied", "/assets/**",
                         "/css/**", "/img/**", "/video/**", "/js/**", "https://**",
                         "http://**").permitAll()
-                .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/profile/user/admin").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -39,7 +41,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .clearAuthentication(true)
                 .invalidateHttpSession(true)
                 .deleteCookies("cineverse-cookie")
-                .logoutSuccessUrl("/home");
+                .logoutSuccessUrl("/home")
+                .and()
+                .exceptionHandling().accessDeniedPage("/access-denied");
     }
 
     @Override

@@ -7,6 +7,7 @@ import mk.ukim.finki.wp.cineverse.service.ActorService;
 import mk.ukim.finki.wp.cineverse.service.ImageService;
 import mk.ukim.finki.wp.cineverse.service.MovieService;
 import mk.ukim.finki.wp.cineverse.service.impl.FileService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -62,6 +63,7 @@ public class MoviesController {
     }
 
     @GetMapping("/add-movie")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String getAddMoviePage(Model model){
         model.addAttribute("style1", "header-and-footer.css");
         model.addAttribute("style2", "add-movie.css");

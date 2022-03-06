@@ -54,7 +54,7 @@ public class SummaryController {
         Movie movie = this.movieService.findById(id).orElseThrow(() -> new MovieNotFoundException(id));
         this.ticketService.create(user,movie,num,(num*movie.getTicketPrice()));
 
-        return "redirect:/profile/user/" + username;
+        return "redirect:/success" ;
     }
 
 }

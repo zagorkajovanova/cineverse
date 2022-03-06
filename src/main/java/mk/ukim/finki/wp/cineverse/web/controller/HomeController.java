@@ -39,4 +39,22 @@ public class HomeController {
         model.addAttribute("bodyContent", "about-us");
         return "master-template";
     }
+
+    @GetMapping("/not-found")
+    public String getNotFoundPage(Model model){
+        model.addAttribute("style1", "header-and-footer.css");
+        model.addAttribute("style2", "not-found.css");
+        model.addAttribute("pageTitle", "Not Found");
+        model.addAttribute("bodyContent", "not-found");
+        return "master-template";
+    }
+
+    @GetMapping("/access-denied")
+    public String getAccessDeniedPage(Model model){
+        model.addAttribute("style1", "header-and-footer.css");
+        model.addAttribute("style2", "not-found.css");
+        model.addAttribute("pageTitle", "Access Denied");
+        model.addAttribute("bodyContent", "access-denied");
+        return "master-template";
+    }
 }
