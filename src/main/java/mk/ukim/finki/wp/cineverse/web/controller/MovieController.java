@@ -20,7 +20,6 @@ import java.util.Optional;
 @RequestMapping("/movie")
 public class MovieController {
 
-
     private final MovieService movieService;
     private final UserService userService;
 
@@ -39,12 +38,6 @@ public class MovieController {
         List<Actor> actors = movie.getActors();
 
         String movieYear = pom1[pom1.length-1];
-
-        Optional<User> optionalUser = Optional.ofNullable(this.userService.findByUsername(request.getRemoteUser()));
-        if (optionalUser.isPresent())
-            model.addAttribute("user", optionalUser.get().getUserId());
-        else
-            model.addAttribute("user", "");
 
         model.addAttribute("movie", movie);
         model.addAttribute("movieYear", movieYear);
@@ -72,12 +65,11 @@ public class MovieController {
         return "master-template";
     }
 
-    @GetMapping("/add-favorite/{userId}/{movieId}")
-    public String addToFavorites(@PathVariable String movieId,
-                                 @PathVariable Long userId){
-        Long id = Long.parseLong(movieId);
-        Movie movie = this.movieService.findById(id).orElseThrow(() -> new MovieNotFoundException(id));
-        User user = this.userService.findById(userId);
+    @GetMapping("/add-favorite/{username}/{movieId}")
+    public String addToFavorites(@PathVariable Long movieId,
+                                @PathVariable String username){
+        Movie movie = this.movieService.findById(movieId).orElseThrow(() -> new MovieNotFoundException(movieId));
+        User user = this.userService.findByUsername(username);
 
         this.userService.addToFavoriteMovies(user,movie);
         return "redirect:/profile/user/" + user.getUsername();

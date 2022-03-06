@@ -13,7 +13,7 @@
                             <h4><th:block th:text="${movieYear}"></th:block>, <th:block th:text="${movie.getDirector()}"></th:block></h4>
                             <span class="minutes"><th:block th:text="${movieHours}"></th:block> <th:block th:text="${movieMins}"></th:block></span>
                             <p class="type"><th:block th:text="${movie.getGenre()}"></th:block></p>
-                            <a id="addToFavorites" th:href="'/movie/add-favorite/' + ${user} + '/' + ${movie.getMovieId()}"
+                            <a id="addToFavorites" th:href="'/movie/add-favorite/' + ${#request.getRemoteUser()} + '/' + ${movie.getMovieId()}"
                                sec:authorize="hasRole('ROLE_USER')">
                                 <img style="width: 30px; padding-left: 5px;" src="/img/like.png"/>
                             </a>

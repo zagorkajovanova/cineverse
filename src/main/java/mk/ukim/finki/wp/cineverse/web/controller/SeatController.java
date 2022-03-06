@@ -56,7 +56,6 @@ public class SeatController {
         Integer num = Integer.parseInt(numSeats);
         User user = this.userService.findByUsername(username);
 
-        //TODO: create ticket and implement summary controller
         request.getSession().setAttribute("user", user);
         request.getSession().setAttribute("numSeats", num);
         request.getSession().setAttribute("movie", movie);

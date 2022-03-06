@@ -83,17 +83,6 @@ public class MoviesController {
                             @RequestParam MultipartFile posterUrl,
                             @RequestParam String description){
 
-//        String[] pom = actors.split(",");
-//        List<Actor> actorList = new ArrayList<>();
-//        for (String s : pom) {
-//            String[] fullName = s.split(" ");
-//            String actorName = fullName[0];
-//            String actorSurname = fullName[1];
-//            actorList.add(new Actor(actorName, actorSurname));
-//            this.actorService.save(actorName,actorSurname);
-//        }
-
-        //TODO: add actors from input
         List<Actor> actors1 = this.actorService.findAll().subList(0,3);
         Float ticketPrice = Float.parseFloat(price);
         Image image = this.imageService.save(FilepathConstants.IMAGE_DESTINATION_PREFIX + posterUrl.getOriginalFilename());
