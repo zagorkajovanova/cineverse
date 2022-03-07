@@ -4,7 +4,6 @@ import mk.ukim.finki.wp.cineverse.model.Movie;
 import mk.ukim.finki.wp.cineverse.model.Review;
 import mk.ukim.finki.wp.cineverse.model.User;
 
-import java.util.Date;
 import java.util.List;
 
 public interface ReviewService {
@@ -12,4 +11,6 @@ public interface ReviewService {
     List<Review> listAllReviewsByMovieId(Long movieId);
     Review create(String comment, Movie movie, User author);
     void removeAllReviewsByMovie(Movie movie);
+    void removeById(Long reviewId);
+    List<Review> getLatestReviews();
 }

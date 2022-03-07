@@ -36,7 +36,6 @@ public class MoviesController {
 
     @GetMapping
     public String getMoviesPage(Model model){
-        Movie randomMovie = this.movieService.selectRandomMovie();
         List<Movie> movies = this.movieService.listAllMovies();
         List<Movie> fantasyMovies = this.movieService.findMoviesByGenre("Fantasy");
         List<Movie> actionMovies = this.movieService.findMoviesByGenre("Action");
@@ -55,7 +54,7 @@ public class MoviesController {
         model.addAttribute("romanceMovies", romanceMovies);
         model.addAttribute("pageTitle", "Movies");
 
-        model.addAttribute("style1", "header-and-footer.css");
+        model.addAttribute("style1", "header-footer.css");
         model.addAttribute("style2", "movies-page-title.css");
         model.addAttribute("style3", "movies-carousel.css");
         model.addAttribute("bodyContent", "movies");
@@ -65,7 +64,7 @@ public class MoviesController {
     @GetMapping("/add-movie")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String getAddMoviePage(Model model){
-        model.addAttribute("style1", "header-and-footer.css");
+        model.addAttribute("style1", "header-footer.css");
         model.addAttribute("style2", "add-movie.css");
         model.addAttribute("pageTitle", "Add movie");
 

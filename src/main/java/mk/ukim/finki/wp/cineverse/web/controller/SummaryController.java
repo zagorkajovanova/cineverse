@@ -37,7 +37,7 @@ public class SummaryController {
         model.addAttribute("seats", seats);
         model.addAttribute("price", seats*movie.getTicketPrice());
 
-        model.addAttribute("style1","header-and-footer.css");
+        model.addAttribute("style1","header-footer.css");
         model.addAttribute("style2", "summary.css");
         model.addAttribute("pageTitle", "Summary");
         model.addAttribute("bodyContent", "summary");

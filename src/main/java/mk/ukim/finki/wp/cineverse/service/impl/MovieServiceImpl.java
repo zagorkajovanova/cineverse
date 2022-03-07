@@ -92,13 +92,6 @@ public class MovieServiceImpl implements MovieService {
                 .sorted(Comparator.comparing(Movie::getShowtime)).limit(5).collect(Collectors.toList());
     }
 
-    @Override
-    public Movie selectRandomMovie() {
-        Random r = new Random();
-        List<Movie> list = this.movieRepository.findAll();
-        Movie movie = list.get(r.nextInt(list.size()));
-        return movie;
-    }
 
     @Override
     public List<Movie> findMoviesByGenre(String genre) {

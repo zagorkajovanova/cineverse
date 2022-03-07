@@ -1,3 +1,4 @@
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 <div xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
     <!--    upcoming movies carousel-->
     <div class="upcomingMoviesCarousel">
@@ -52,11 +53,9 @@
     <br/><br/>
 
     <!--    top movies -->
-    <div class="container">
+    <div class="container" style="margin-top: -15px">
         <h3 class='text-center top'>
-            <span class="topMoviesHeader" style="font-family: Perpetua,serif;">T O P</span>
-            <span><i class="fa fa-ticket" style="width: 30px"></i></span>
-            <span class="topMoviesHeader" style="font-family: Perpetua,serif;">M O V I E S</span>
+            <span class="topMoviesHeader" style="font-family: Perpetua,serif; letter-spacing: 3px">TOP  MOVIES</span>
         </h3>
     </div>
 
@@ -65,6 +64,40 @@
             <a th:href="'/movie/' + ${movie.getMovieId()}">
                                 <img th:src="${movie.getPoster().getImageUrl()}" class="card-img-top" alt="...">
             </a>
+        </div>
+    </div>
+
+<!--    latest reviews-->
+    <div class="container d-flex justify-content-center">
+
+        <div class="col mt-3 mb-3">
+            <div class="text-center mb-2 reviewsTitle"><span
+                    style="font-family: Perpetua,serif; font-size: 1.5rem; letter-spacing: 2px">LATEST  REVIEWS</span>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="media g-mb-30 media-comment" th:each="review : ${reviews}">
+                            <img class="d-flex g-width-50 g-height-50 rounded-circle g-mt-3 g-mr-15" th:src="${review.getAuthor().getAvatarUrl()}" alt="User Avatar">
+                            <div class="media-body u-shadow-v18 g-bg-secondary" style="padding: 15px 60px 15px 20px">
+                                <div class="g-mb-15 position-relative">
+                                    <div class="d-flex justify-content-end" sec:authorize="hasRole('ROLE_ADMIN')">
+                                        <a class="position-absolute top-0 end-0" th:href="'/home/remove-review/' + ${review.getReviewId()}">
+                                            <i style="width: 20px; color: gray" class="fa fa-minus"></i>
+                                        </a>
+                                    </div>
+
+                                    <h5 class="h5 g-color-gray-dark-v1 mb-0">
+                                        <th:block th:text="${review.getAuthor().getName()}"></th:block> <th:block th:text="${review.getAuthor().getSurname()}"></th:block>
+                                    </h5>
+                                    <span class="g-color-gray-dark-v4 g-font-size-12 mb-3"><th:block th:text="${review.getReviewDate()}"></th:block></span>
+                                </div>
+                                <p class="text-muted"><th:block th:text="${review.getComment()}"></th:block></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

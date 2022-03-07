@@ -24,7 +24,7 @@ public class LoginController {
     @GetMapping
     public String getLoginPage(Model model){
         model.addAttribute("pageTitle", "Login");
-        model.addAttribute("style1", "header-and-footer.css");
+        model.addAttribute("style1", "header-footer.css");
         model.addAttribute("style2", "login.css");
         model.addAttribute("bodyContent", "login");
         return "master-template";

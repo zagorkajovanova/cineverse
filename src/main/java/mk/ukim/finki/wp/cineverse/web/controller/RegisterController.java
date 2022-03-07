@@ -24,7 +24,7 @@ public class RegisterController {
     @GetMapping
     public String getRegisterPage(Model model){
         model.addAttribute("pageTitle", "Register");
-        model.addAttribute("style1", "header-and-footer.css");
+        model.addAttribute("style1", "header-footer.css");
         model.addAttribute("style2", "register.css");
         model.addAttribute("bodyContent", "register");
         return "master-template";

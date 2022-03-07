@@ -25,7 +25,7 @@ public class RemoveMovieController {
         List<Movie> movies = this.movieService.listAllMovies();
 
         model.addAttribute("movies", movies);
-        model.addAttribute("style1", "header-and-footer.css");
+        model.addAttribute("style1", "header-footer.css");
         model.addAttribute("style2", "add-movie.css");
         model.addAttribute("pageTitle", "Remove Movie");
         model.addAttribute("bodyContent", "remove-movie");

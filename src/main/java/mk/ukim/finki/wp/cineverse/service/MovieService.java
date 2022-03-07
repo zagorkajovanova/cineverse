@@ -19,6 +19,5 @@ public interface MovieService {
                  Image poster, String trailerUrl, String showtime, String duration,
                  Float ticketPrice, String director, String writer, List<Actor> actors);
     List<Movie> getLatestMovies();
-    Movie selectRandomMovie();
     List<Movie> findMoviesByGenre(String genre);
 }

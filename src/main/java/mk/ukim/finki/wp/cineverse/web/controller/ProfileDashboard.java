@@ -49,7 +49,7 @@ public class ProfileDashboard {
             role = "Admin";
         }
 
-        model.addAttribute("style1", "header-and-footer.css");
+        model.addAttribute("style1", "header-footer.css");
         model.addAttribute("style2", "profile.css");
         model.addAttribute("bodyContent", "user-profile");
         model.addAttribute("pageTitle", "Profile");

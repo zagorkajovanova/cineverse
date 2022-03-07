@@ -47,7 +47,7 @@ public class MovieController {
         model.addAttribute("pageTitle", movie.getTitle());
         model.addAttribute("actors", actors);
 
-        model.addAttribute("style1", "header-and-footer.css");
+        model.addAttribute("style1", "header-footer.css");
         model.addAttribute("style2", "single-movie-display.css");
         model.addAttribute("style3", "movies-page-title.css");
         model.addAttribute("bodyContent", "movie");
@@ -61,7 +61,7 @@ public class MovieController {
 
         model.addAttribute("movie", movie);
         model.addAttribute("pageTitle", "Movie Trailer");
-        model.addAttribute("style1", "header-and-footer.css");
+        model.addAttribute("style1", "header-footer.css");
         model.addAttribute("bodyContent", "trailer");
         return "master-template";
     }
