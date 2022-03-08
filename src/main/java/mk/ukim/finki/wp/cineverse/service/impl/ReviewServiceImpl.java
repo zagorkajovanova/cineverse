@@ -59,6 +59,6 @@ public class ReviewServiceImpl implements ReviewService {
     @Override
     public List<Review> getLatestReviews() {
         return this.reviewRepository.findAll().stream()
-                .sorted(Comparator.comparing(Review::getReviewDate)).limit(2).collect(Collectors.toList());
+                .sorted(Comparator.comparing(Review::getReviewDate).reversed()).limit(2).collect(Collectors.toList());
     }
 }

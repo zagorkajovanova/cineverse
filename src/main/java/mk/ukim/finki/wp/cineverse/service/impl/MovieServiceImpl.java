@@ -98,4 +98,5 @@ public class MovieServiceImpl implements MovieService {
         return this.movieRepository.findAllByGenre(genre);
     }
 
+
 }

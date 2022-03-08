@@ -1,0 +1,31 @@
+<div xmlns:th="http://www.w3.org/1999/xhtml">
+    <div class="form-bg">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-offset-3 col-md-6">
+                    <div class="form-container">
+                        <h3 class="title">Add new movie</h3>
+                        <form th:action="@{'/movies/add-review/{user}' (user=${#request.getRemoteUser()})}" method="POST" class="form-horizontal">
+                            <div class="form-group">
+                                <label>Movie title</label>
+                                <select class="form-control" name="movieId" required>
+                                    <option>Choose movie</option>
+                                    <option th:each="movie: ${movies}" th:text="${movie.getTitle()}" th:value="${movie.getMovieId()}"></option>
+                                </select>
+                            </div>
+                            <div style="padding-bottom: 5px">
+                                <textarea class="form-control"
+                                          placeholder="Write your review here..."
+                                          rows="3"
+                                          name="comment"
+                                          required></textarea>
+                            </div>
+
+                            <br/><button class="btn btn-dark" style="color: white">Add Review</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
