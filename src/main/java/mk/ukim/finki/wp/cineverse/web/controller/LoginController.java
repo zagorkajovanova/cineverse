@@ -34,9 +34,8 @@ public class LoginController {
     public String login(HttpServletRequest request, Model model){
         User user = null;
         try{
-            user = this.userService.login(request.getParameter("username"),
-                    request.getParameter("password"));
-            request.getSession().setAttribute("user", user);
+            user = this.userService.login(request.getParameter("username"), request.getParameter("password"));
+//            request.getSession().setAttribute("user", user);
             return "redirect:/home";
         }catch (InvalidUserCredentialsException exception){
             return "redirect:/login";
