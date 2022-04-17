@@ -50,7 +50,7 @@ public class User implements UserDetails {
     }
 
     public User(String username, String password, String name, String surname, LocalDate birthDate,
-                String address, String email, Role role, String avatarUrl) {
+                String address, String email, Role role) {
         this.username = username;
         this.password = password;
         this.name = name;
@@ -62,11 +62,8 @@ public class User implements UserDetails {
         this.favoriteMovies = new ArrayList<>();
         this.tickets = new ArrayList<>();
 
-        if(avatarUrl!=null && !avatarUrl.isEmpty()) {
-            this.avatarUrl = avatarUrl;
-        }else{
-            this.avatarUrl = "/img/user-avatar.png";
-        }
+        this.avatarUrl = "/img/user-avatar.png";
+
     }
 
     @Override

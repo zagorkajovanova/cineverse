@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='utf-8' />
+  <title>Cineverse - Calendar</title>
+
+  <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.6.1/fullcalendar.min.css">
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.12.0/moment.min.js"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.6.1/fullcalendar.min.js"></script>
+</head>
+
+<body>
+<script>
+  $(document).ready(function() {
+
+    var movies = document.getElementsByClassName('movies');
+    var dates = document.getElementsByClassName('dates');
+
+    let movieEvents = []
+    for(let i=0; i<movies.length; i++){
+      movieEvents.push(
+              {title: movies[i].innerHTML, start: dates[i].innerHTML}
+      );
+    }
+
+    $('#calendar').fullCalendar({
+      left: 'prev,next today',
+      center: 'title',
+      right: 'month,agendaWeek,agendaDay',
+      events: movieEvents
+    });
+
+  });
+</script>
+<div id='calendar'></div>
+<div>
+  <ul style="display: none">
+    <li class="movies" th:each="movie : ${movies}" th:text="${movie}"></li>
+    <li class="dates" th:each="date : ${dates}" th:text="${date}"></li>
+  </ul>
+</div>
+</body>
+</html>

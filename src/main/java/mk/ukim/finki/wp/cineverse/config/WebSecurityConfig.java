@@ -1,5 +1,5 @@
 package mk.ukim.finki.wp.cineverse.config;
-
+import mk.ukim.finki.wp.cineverse.service.UserService;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -16,7 +16,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private final PasswordEncoder passwordEncoder;
     private final CustomUsernamePasswordAuthenticationProvider customUsernamePasswordAuthenticationProvider;
 
-    public WebSecurityConfig(PasswordEncoder passwordEncoder, CustomUsernamePasswordAuthenticationProvider customUsernamePasswordAuthenticationProvider) {
+    public WebSecurityConfig(PasswordEncoder passwordEncoder, CustomUsernamePasswordAuthenticationProvider customUsernamePasswordAuthenticationProvider, UserService userService) {
         this.passwordEncoder = passwordEncoder;
         this.customUsernamePasswordAuthenticationProvider = customUsernamePasswordAuthenticationProvider;
     }
@@ -26,7 +26,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/", "/home", "/about-us", "/movies", "/movie/{id}", "/movie/{id}/{trailer}", "/register", "/not-found", "/access-denied", "/assets/**",
-                        "/css/**", "/img/**", "/video/**", "/js/**", "https://**", "http://**",
+                        "/css/**", "/img/**", "/video/**", "/js/**", "https://**", "http://**", "/calendar",
                         "www.facebook.com/**").permitAll()
                 .antMatchers("/profile/user/admin").hasRole("ADMIN")
                 .anyRequest().authenticated()
@@ -45,7 +45,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .exceptionHandling().accessDeniedPage("/access-denied");
     }
-
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 //                auth.inMemoryAuthentication()
@@ -58,4 +57,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //                .authorities("ROLE_ADMIN");
         auth.authenticationProvider(customUsernamePasswordAuthenticationProvider);
     }
+
 }

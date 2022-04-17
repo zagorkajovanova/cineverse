@@ -4,7 +4,6 @@ import mk.ukim.finki.wp.cineverse.model.Movie;
 import mk.ukim.finki.wp.cineverse.model.User;
 import mk.ukim.finki.wp.cineverse.model.enums.Role;
 import mk.ukim.finki.wp.cineverse.model.exceptions.*;
-import mk.ukim.finki.wp.cineverse.repository.ClientRepository;
 import mk.ukim.finki.wp.cineverse.repository.UserRepository;
 import mk.ukim.finki.wp.cineverse.service.UserService;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -34,32 +33,29 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findByUsername(String username) {
-        return this.userRepository.findByUsername(username).orElseThrow(() ->new UsernameNotFoundException(username));
+        return this.userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException(username));
     }
 
     @Override
     public Optional<User> register(String username, String password, String repeatPassword, String name, String surname, String birthDate,
-                                   String address, String email, Role role, String avatarURL) {
-        if(avatarURL==null || avatarURL.isEmpty()){
-            avatarURL = "";
-        }
+                                   String address, String email, Role role) {
 
-        if(username==null || username.isEmpty() || password==null || password.isEmpty()) {
+        if (username == null || username.isEmpty() || password == null || password.isEmpty()) {
             throw new InvalidUsernameOrPasswordException();
         }
 
-        if(!password.equals(repeatPassword)){
+        if (!password.equals(repeatPassword)) {
             throw new PasswordsDoNotMatchException();
         }
 
-        if(this.userRepository.findByUsername(username).isPresent()){
+        if (this.userRepository.findByUsername(username).isPresent()) {
             throw new UsernameAlreadyExistsException(username);
         }
 
         LocalDate date = LocalDate.parse(birthDate);
 
         User user = new User(username, this.passwordEncoder.encode(password), name, surname, date,
-                address, email, role, "");
+                address, email, role);
         return Optional.of(this.userRepository.save(user));
     }
 
@@ -68,7 +64,7 @@ public class UserServiceImpl implements UserService {
                        String address, String avatarUrl) {
 
         User user = this.userRepository.findById(userId).orElseThrow(() -> new InvalidUserException(userId));
-        if(avatarUrl.equals("")){
+        if (avatarUrl.equals("")) {
             avatarUrl = user.getAvatarUrl();
         }
 
@@ -106,7 +102,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User login(String username, String password) {
-        if (username==null || username.isEmpty() || password==null || password.isEmpty()) {
+        if (username == null || username.isEmpty() || password == null || password.isEmpty()) {
             throw new InvalidUsernameOrPasswordException();
         }
         return userRepository.findByUsernameAndPassword(username,
