@@ -1,5 +1,5 @@
 <p align="center"><img width="300" src="https://user-images.githubusercontent.com/79025916/165777777-49a66906-43d1-443a-9bfd-dd4eb44e2c5d.png"></p>
-<p align="center"><i>Online movie ticket booking system</i></p><hr/>
+<p align="center"><i>Online movie ticket booking app</i></p><hr/>
 
 ## Functionalities
 <i>For **all** users</i>
